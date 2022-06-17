@@ -1,13 +1,11 @@
 import "./reset.css"
 import "./assets/font/index.css"
-import Text from "./elem/Text"
-import ImageRegist from "./elem/ImageRegist";
+import Router from './Router';
 
 function App() {
   return (
     <div className="App">
-      <ImageRegist />
-      <Text />
+      <Router />
     </div>
   );
 }

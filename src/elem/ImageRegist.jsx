@@ -15,18 +15,18 @@ const ImageRegistBx = styled.div`
 		height: 80px;
 		line-height: 80px;
 		text-align: center;
-		border: 1px dashed #C4C4C4;
-		border-radius: 0.6em;
 		& label {
-			width: 20px;
-			height: 20px;
-			line-height: 20px;
+			width: 80px;
+			height: 80px;
+			line-height: 80px;
 			display: inline-block;
+			border: 1px dashed #C4C4C4;
 			color: #C4C4C4;
+			font-size: 22px;
+			font-weight: 600;
+			border-radius: 0.6em;
 			vertical-align: middle;
 			cursor: pointer;
-			border: 1px solid #C4C4C4;
-			border-radius:50%;
 			& i {
 				vertical-align: inherit;
 			}

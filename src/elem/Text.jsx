@@ -9,6 +9,7 @@ const Text = () => {
 const TextBx = styled.textarea`
 	width: 100%;
 	height: 100px;
+	padding: 10px;
 	border: 1px solid #C4C4C4;
 	border-radius: 0.6em;
 	resize: none;
