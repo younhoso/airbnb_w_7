@@ -6,6 +6,7 @@ import App from './App';
 import store from './modules/configStore';
 import { history } from './modules/configStore';
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
