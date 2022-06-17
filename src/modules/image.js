@@ -8,7 +8,7 @@ const setPreview = createAction(PREVIEW, (preview) => ({ preview }));
 const imageUpload = createAction(UPLOAD, (imageUrl) => ({ imageUrl }));
 
 const initialState = {
-	imageUrl: null,
+	imageUrl: [],
 	preview: null,
 };
 

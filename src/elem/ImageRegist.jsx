@@ -1,11 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 
-const ImageRegist = () => {
+const ImageRegist = ({values}) => {
+	
+	const handleFileChange = (e) => {
+		values((prevFiles) => {
+			console.log(prevFiles)
+			console.log(e.target.value)
+		});	
+	}
+
 	return(
 		<ImageRegistBx>
 			<label htmlFor="file"><i className="ic-plus"></i></label> 
-			<input type="file" id="file" />
+			<input type="file" multiple id="file" accept="image/png, image/jpeg" onChange={handleFileChange}/>
 		</ImageRegistBx>
 	)
 };
