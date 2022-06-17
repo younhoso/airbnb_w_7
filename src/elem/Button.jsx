@@ -6,8 +6,6 @@ function Button({name}) {
         <div>
             <Btn>Sign Up</Btn>
             <SmallBtn>{name}</SmallBtn>
-            <Sme className="ic-plus puls"></Sme>
-            <i className="ic-home"></i>
         </div>
     )
 }
@@ -27,9 +25,6 @@ const SmallBtn = styled.button`
     color: white;
     border-radius: 6px;
     font-size: 11px;
-`
-const Sme = styled.i`
-    font-size: 222px;
 `
 
 export default Button

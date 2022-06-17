@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const Text = () => {
+const Text = ({value, onChange}) => {
 	return(
-		<TextBx placeholder="사장님 한마디 해주세요.(최대 1,000자)"></TextBx>
+		<TextBx name="content" value={value} onChange={onChange} placeholder="사장님 한마디 해주세요.(최대 1,000자)"></TextBx>
 	)
 }
 const TextBx = styled.textarea`
