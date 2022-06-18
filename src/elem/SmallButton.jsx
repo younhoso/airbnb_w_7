@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from "styled-components";
 
-function SmallButto() {
+function SmallButto({ children }) {
   return (
     <div>
-      <SmallBtn>중복확인</SmallBtn>
+      <SmallBtn >{children}</SmallBtn>
     </div>
   )
 }
@@ -15,7 +15,7 @@ const SmallBtn = styled.button`
     background-color: black;
     color: white;
     border-radius: 6px;
-    font-size: 11px;
+    font-size: 9px;
 `
 
 export default SmallButto
