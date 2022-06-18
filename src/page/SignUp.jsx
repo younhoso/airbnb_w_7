@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from "styled-components";
 import Input from '../elem/Input';
+import { LargeButton } from '../elem/Button'
 
 function SignUp() {
     return (
@@ -9,31 +10,31 @@ function SignUp() {
                 <h1>Sign Up</h1>
                 <label htmlFor="id">
                     <p>이메일(ID)</p>
-                    <Input id="id" type="email" required placeholder="이메일 형식에 맞게 작성해 주세요(@)" />
+                    <Input id="id" type="email" required placeholder="아이디(이메일)" />
                 </label>
                 <label htmlFor="pw">
                     <p>비밀번호</p>
-                    <Input id="pw" required type="password" placeholder="비밀번호 영문/숫자 포함(8_20자) 작성해 주세요" />
+                    <Input id="pw" required type="password" placeholder="비밀번호 입력" />
                 </label>
                 <label htmlFor="pw2">
                     <p>비밀번호 확인</p>
-                    <Input id="pw2" type="password" required placeholder="비밀번호 한 번 더 입력해 주세요" />
+                    <Input id="pw2" type="password" required placeholder="비밀번호 확인" />
                 </label>
                 <label htmlFor="nic">
                     <p>이름</p>
-                    <Input id="nic" required placeholder="닉네임 영문/숫자 -,_ 포함 작성해 주세요" />
+                    <Input id="nic" required placeholder="이름을 입력해주세요." />
                 </label>
                 <label htmlFor="nic">
                     <p>생년월일</p>
-                    <Input id="nic" required placeholder="닉네임 영문/숫자 -,_ 포함 작성해 주세요" />
+                    <Input id="nic" required placeholder="생년월일 ex) 19780401" />
                 </label>
                 <label htmlFor="nic">
                     <p>성별</p>
-                    <Input id="nic" required placeholder="닉네임 영문/숫자 -,_ 포함 작성해 주세요" />
+                    <Input id="nic" required placeholder="성별" />
                 </label>
-                <UserBtn type="submit">회원가입</UserBtn>
+                <LargeButton>Sign Up</LargeButton>
                 <LoginZoneText>계정이 있으신가요?</LoginZoneText>
-                <UserBtn>로그인</UserBtn>
+                <LargeButton>로그인</LargeButton>
             </FormSection>
         </AccountSection>
     )
@@ -41,20 +42,26 @@ function SignUp() {
 
 const FormSection = styled.form`
   box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
-  max-width: 450px;
+  max-width: 425px;
+  min-width: 375px;
   width: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 18px;
-  padding: 15px 0;
   h1 {
       text-align: left;
       margin-bottom: 40px;
   }
   label {
       width: 80%;
+      display:flex;
+      flex-direction:column;
+      align-items: center;
+  }
+  label:nth-child(7) {
+    margin-bottom: 15px;
   }
   label>p{
       margin:5px 0;

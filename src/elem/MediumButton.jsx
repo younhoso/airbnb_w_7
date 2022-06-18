@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from "styled-components";
 
-function MediumButton({width, theme, children}) {
+function MediumButton({ children, color, background }) {
     return (
-        <MediumBtnInner>
-            <MediumBtn width={width} theme={theme}>{children}</MediumBtn>
-        </MediumBtnInner>
+        <div>
+            <MediumBtn color={color} background={background}>{children}</MediumBtn>
+        </div>
     )
 }
 
@@ -16,11 +16,11 @@ const MediumBtnInner = styled.div`
 const MediumBtn = styled.button`
     width: ${props => props.width};
     height: 37px;
-    background-color: ${props => props.theme.bgColor}; 
-    color: ${props => props.theme.fontColor};
+    background: ${(props) => props.bg || "#C4C4C4"};
+    color: ${(props) => props.color || "white"};
     border-radius: 6px;
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 10px;
+    font-weight: bold;
 `
 
 export default MediumButton

@@ -1,30 +1,51 @@
-import React from "react";
-import styled from "styled-components";
+// import React from "react";
+import styled, { css } from "styled-components";
 
-function Button({name}) {
-    return (
-        <div>
-            <Btn>Sign Up</Btn>
-            <SmallBtn>{name}</SmallBtn>
-        </div>
-    )
-}
+// function LargeButton({ children, background }) {
+//     return (
+//         <div>
+//             <LargeBtn background={background}>{children}</LargeBtn>
+//         </div>
+//     )
+// }
 
-const Btn = styled.button`
-  width: 343px;
-  height: 52px;
-  border-radius: 10px;
-  background-color: black;
-  color: white;
-  font-weight: bold;
+// const LargeBtn = styled.button`
+//   width: 343px;
+//   height: 52px;
+//   border-radius: 10px;
+//   background-color: ${(props) => props.background || "black"};
+//   color: white;
+//   font-weight: bold;
+// `
+
+const Btn = css`
+    font-weight: bold;
+    cursor:pointer;
 `
-const SmallBtn = styled.button`
+// large button
+export const LargeButton = styled.button`
+    ${Btn}
+    color: white;
+    background-color: ${(props) => props.background || "black"};
+    width: 343px;
+    height: 52px;
+    border-radius: 10px;
+`
+export const MediunButton = styled.button`
+    ${Btn}
+    width: 80px;
+    height: 37px;
+    background-color: ${(props) => props.background || "#C4C4C4"};
+    color: ${(props) => props.color || "white"};
+    border-radius: 6px;
+    font-size: 10px;
+`
+export const SmallButton = styled.button`
     width: 52px;
     height: 26px;
-    background-color: black;
-    color: white;
+    background-color: ${(props) => props.background || "balck"};
+    color: ${(props) => props.color || "white"};
     border-radius: 6px;
-    font-size: 11px;
+    font-size: 9px;
 `
-
-export default Button
+// export default LargeButton
