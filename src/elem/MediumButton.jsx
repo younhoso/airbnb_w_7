@@ -1,21 +1,26 @@
 import React from 'react'
 import styled from "styled-components";
 
-function MediumButton() {
+function MediumButton({width, theme, children}) {
     return (
-        <div>
-            <MediumBtn>등록하기</MediumBtn>
-        </div>
+        <MediumBtnInner>
+            <MediumBtn width={width} theme={theme}>{children}</MediumBtn>
+        </MediumBtnInner>
     )
 }
 
+const MediumBtnInner = styled.div`
+    display: inline-block;
+`
+
 const MediumBtn = styled.button`
-    width: 80px;
+    width: ${props => props.width};
     height: 37px;
-    background-color: #471868;
-    color: white;
+    background-color: ${props => props.theme.bgColor}; 
+    color: ${props => props.theme.fontColor};
     border-radius: 6px;
-    font-size: 10px;
+    font-size: 12px;
+    font-weight: 600;
 `
 
 export default MediumButton
