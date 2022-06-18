@@ -2,6 +2,11 @@ import { useState } from "react";
 import styled from "styled-components";
 import ImageRegist from "../elem/ImageRegist";
 import Text from "../elem/Text";
+import AddressInfo from "./AddressInfo";
+import AroundInfo from "./AroundInfo";
+import Calender from "./Calender";
+import Floating from "./Floating";
+import Service from "./Service";
 
 const FormWrite = () => {
 	const [values, setValues] = useState({
@@ -39,8 +44,12 @@ const FormWrite = () => {
 	return(
 		<ContainerForm onSubmit={handleSubmit}>
 			<ImageRegist name="imgFile" imgFileValue={values.imgFile} onChange={handleChange}/>
-			<Text value={values.content} onChange={handleInputChange} />
-			<button type="submit">확인</button>
+			<Text className="txtBx" value={values.content} onChange={handleInputChange}>사장님 한마디 해주세요.(최대 1,000자)</Text>
+			<Calender />
+			<AddressInfo />
+			<Service />
+			<AroundInfo />
+			<Floating />
 		</ContainerForm>
 	)
 }
@@ -49,6 +58,7 @@ const ContainerForm = styled.form`
 	width: 100%;
 	border-radius: 10px;
 	background-color: #fff;
+	padding-bottom: 120px;
 `;
 
 export default FormWrite;
