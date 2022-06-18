@@ -9,8 +9,12 @@ function MediumButton({ children, color, background }) {
     )
 }
 
+const MediumBtnInner = styled.div`
+    display: inline-block;
+`
+
 const MediumBtn = styled.button`
-    width: 80px;
+    width: ${props => props.width};
     height: 37px;
     background: ${(props) => props.bg || "#C4C4C4"};
     color: ${(props) => props.color || "white"};
