@@ -41,12 +41,16 @@ export const MediunButton = styled.button`
     font-size: 10px;
 `
 export const SmallButton = styled.button`
+    ${Btn}
     width: 52px;
     height: 26px;
-    background-color: ${(props) => props.background || "balck"};
+    background-color: ${(props) => props.background || "black"};
     color: ${(props) => props.color || "white"};
     border-radius: 6px;
     font-size: 9px;
+    position:absolute;
+    top: -37px;
+    right: -160px;
 `
 export const M_PointBtn = styled.button`
     width: 80px;

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from "styled-components";
 
-function SmallButto({ children }) {
+function SmallButton({ children }) {
   return (
     <div>
       <SmallBtn >{children}</SmallBtn>
@@ -16,6 +16,7 @@ const SmallBtn = styled.button`
     color: white;
     border-radius: 6px;
     font-size: 9px;
+    position:absolute;
 `
 
-export default SmallButto
+export default SmallButton
