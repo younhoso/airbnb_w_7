@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import ImageRegist from "../elem/ImageRegist";
 import Text from "../elem/Text";
+import AddressInfo from "./AddressInfo";
 
 const FormWrite = () => {
 	const [values, setValues] = useState({
@@ -40,6 +41,7 @@ const FormWrite = () => {
 		<ContainerForm onSubmit={handleSubmit}>
 			<ImageRegist name="imgFile" imgFileValue={values.imgFile} onChange={handleChange}/>
 			<Text value={values.content} onChange={handleInputChange} />
+			<AddressInfo />
 			<button type="submit">확인</button>
 		</ContainerForm>
 	)

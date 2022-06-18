@@ -12,6 +12,7 @@ function Input({ width, height, theme, children }) {
 const InputBoxInner = styled.div`
     width: ${props => props.width};
     display: inline-block;
+    flex-grow: 0.9;
 `
 
 const InputBox = styled.input`

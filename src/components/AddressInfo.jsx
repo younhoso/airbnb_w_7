@@ -16,14 +16,18 @@ const AddressInfo = () => {
 				<h2>주소 정보</h2>
 				<i className={`ic-arrow-top ${isActive ? "on" : "off"}`}></i>
 			</div>
-			<div className={`contents ${isActive ? "on" : "off"}`}>
-				<div>
-					<Input width="257px" height="40px" theme={{borderColor: "#C4C4C4"}} />
+			<ContensInner height="180px" className={`contents ${isActive ? "on" : "off"}`}>
+				<div className="number box">
+					<Input height="40px" theme={{borderColor: "#C4C4C4"}} />
 					<MediumButton width="78px" theme={{ fontColor: "#000000", bgColor: "#F4F4F4" }}>우편번호</MediumButton>
 				</div>
-				<Input width="100%" height="40px" theme={{borderColor: "#C4C4C4"}}>주소</Input>
-				<Input width="100%" height="40px" theme={{borderColor: "#C4C4C4"}}>상세주소</Input>
-			</div>
+				<div className="box">
+					<Input width="100%" height="40px" theme={{borderColor: "#C4C4C4"}}>주소</Input>
+				</div>
+				<div className="box">
+					<Input width="100%" height="40px" theme={{borderColor: "#C4C4C4"}}>상세주소</Input>
+				</div>
+			</ContensInner>
 		</DropDownBx>
 	)
 };
@@ -46,19 +50,6 @@ const DropDownBx = styled.div`
 			transform:rotate(180deg)
 		}
 	}
-	.contents {
-		height: 150px;
-		-webkit-transition: max-height 0.2s ease-in-out;
-		transition: max-height 0.2s ease-in-out;
-		overflow: hidden;
-		padding: 0 20px;
-    box-sizing: border-box;
-		div {
-			display: flex;
-    	justify-content: space-between;
-    	align-items: center;
-		}
-	}
 	.contents.off {
 		max-height: 0;
 	}
@@ -69,6 +60,22 @@ const DropDownBx = styled.div`
 		font-size: 22px;
 		font-weight: 600;
 		padding: 10px;
+	}
+`
+const ContensInner = styled.div`
+	height: ${props => props.height};
+	-webkit-transition: max-height 0.2s ease-in-out;
+	transition: max-height 0.2s ease-in-out;
+	overflow: hidden;
+	padding: 0 20px;
+	box-sizing: border-box;
+	.number {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.box {
+		margin: 8px 0;
 	}
 `
 

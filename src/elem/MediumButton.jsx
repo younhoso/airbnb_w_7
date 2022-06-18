@@ -1,16 +1,17 @@
 import React from 'react'
 import styled from "styled-components";
 
-function MediumButton({ children, color, background }) {
+function MediumButton({ width, children, color, background }) {
     return (
-        <div>
-            <MediumBtn color={color} background={background}>{children}</MediumBtn>
-        </div>
+        <MediumBtnInner>
+            <MediumBtn width={width} color={color} background={background}>{children}</MediumBtn>
+        </MediumBtnInner>
     )
 }
 
 const MediumBtnInner = styled.div`
-    display: inline-block;
+    flex-shrink: 0;
+	width: auto;
 `
 
 const MediumBtn = styled.button`
