@@ -1,9 +1,8 @@
 import React,{useState} from "react";
 import styled from "styled-components";
-import Input from "../elem/Input";
-import MediumButton from "../elem/MediumButton"
+import Text from "../elem/Text";
 
-const AddressInfo = () => {
+const AroundInfo = () => {
 	const [isActive, setActive] = useState("false");
 
 	const hanleDropDownBox = (e) => {
@@ -11,33 +10,27 @@ const AddressInfo = () => {
 	}
 
 	return(
-		<DropDownBx>
+		<AroundInfoBx>
 			<div className="boxInner" onClick={hanleDropDownBox}>
-				<h2>주소 정보</h2>
+				<h2>주변정보</h2>
 				<i className={`ic-arrow-top ${isActive ? "on" : "off"}`}></i>
 			</div>
-			<ContensInner height="180px" className={`contents ${isActive ? "on" : "off"}`}>
-				<div className="number box">
-					<Input height="40px" theme={{borderColor: "#C4C4C4"}} />
-					<MediumButton width="78px" theme={{ fontColor: "#000000", bgColor: "#F4F4F4" }}>우편번호</MediumButton>
-				</div>
-				<div className="box">
-					<Input width="100%" height="40px" theme={{borderColor: "#C4C4C4"}}>주소</Input>
-				</div>
-				<div className="box">
-					<Input width="100%" height="40px" theme={{borderColor: "#C4C4C4"}}>상세주소</Input>
-				</div>
+			<ContensInner height="120px" className={`contents ${isActive ? "on" : "off"}`}>
+				<Text>숙소 주변 정보를 입력해 주세요.(최대 1,000자)</Text>
 			</ContensInner>
-		</DropDownBx>
+		</AroundInfoBx>
 	)
 };
 
-const DropDownBx = styled.div`
-	width: 100%;
+const AroundInfoBx = styled.div`
+	height: ${props => props.height};
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3); 
-	margin-bottom: 20px;
-	border-radius: 0.8em;
+	-webkit-transition: max-height 0.2s ease-in-out;
+	transition: max-height 0.2s ease-in-out;
+	overflow: hidden;
 	padding: 0 20px;
+	box-sizing: border-box;
+	border-radius: 0.8em;
 	.boxInner {
 		display: flex;
     justify-content: space-between;
@@ -51,11 +44,17 @@ const DropDownBx = styled.div`
 			transform:rotate(180deg)
 		}
 	}
+	.contents {
+		padding: 0 10px;
+	}
 	.contents.off {
 		max-height: 0;
 	}
 	.contents.on {
 		max-height: 300px;
+	}
+	.box {
+		margin: 8px 0;
 	}
 	h2 {
 		font-size: 18px;
@@ -68,16 +67,10 @@ const ContensInner = styled.div`
 	-webkit-transition: max-height 0.2s ease-in-out;
 	transition: max-height 0.2s ease-in-out;
 	overflow: hidden;
-	padding: 0 10px;
 	box-sizing: border-box;
-	.number {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-	.box {
-		margin: 8px 0;
-	}
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
 `
 
-export default AddressInfo;
+export default AroundInfo;

@@ -21,6 +21,5 @@ export const apis = {
 	lookups: () => api.get('/api/'),
 	lookup: (id) => api.get(`/api/${id}`),
 	search: (value) => api.get(`/api/${value}`),
-
-
+	
 }

@@ -48,4 +48,14 @@ export const SmallButton = styled.button`
     border-radius: 6px;
     font-size: 9px;
 `
+export const M_PointBtn = styled.button`
+    width: 80px;
+    height: 37px;
+    background: ${(props) => props.scolor};
+    background: linear-gradient(90deg, ${(props) => props.scolor} 0%, ${(props) => props.ecolor} 100%);
+    color: ${(props) => props.color || "white"};
+    border-radius: 6px;
+    font-size: 12px;
+`
+
 // export default LargeButton
