@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from "styled-components";
 
-function Input({ width, height, theme, children }) {
+function Input({ width, height, theme, children, defaultValue }) {
     return (
         <InputBoxInner width={width}>
-            <InputBox height={height} theme={theme} placeholder={children} />
+            <InputBox defaultValue={defaultValue} height={height} theme={theme} placeholder={children} />
         </InputBoxInner>
     )
 }
@@ -18,7 +18,7 @@ const InputBox = styled.input`
     box-sizing: border-box;
     width: 100%;
     height: ${props => props.height};
-    border-radius: 0.5em;
+    border-radius:0.5rem;
     border: 1px solid ${props => props.theme.borderColor};
     padding-left: 9px;
     &:focus {
