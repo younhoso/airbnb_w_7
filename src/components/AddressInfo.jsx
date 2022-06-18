@@ -14,7 +14,7 @@ const AddressInfo = () => {
 		<DropDownBx>
 			<div className="boxInner" onClick={hanleDropDownBox}>
 				<h2>주소 정보</h2>
-				<i className="ic-arrow-top"></i>
+				<i className={`ic-arrow-top ${isActive ? "on" : "off"}`}></i>
 			</div>
 			<div className={`contents ${isActive ? "on" : "off"}`}>
 				<div>
@@ -40,6 +40,10 @@ const DropDownBx = styled.div`
 		i {
 			font-size: 24px;
 			padding: 10px;
+			transition: transform .25s ease-in-out;
+		}
+		i.off {
+			transform:rotate(180deg)
 		}
 	}
 	.contents {
