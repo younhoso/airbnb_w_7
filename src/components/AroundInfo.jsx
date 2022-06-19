@@ -15,7 +15,7 @@ const AroundInfo = () => {
 				<h2>주변정보</h2>
 				<i className={`ic-arrow-top ${isActive ? "on" : "off"}`}></i>
 			</div>
-			<ContensInner height="120px" className={`contents ${isActive ? "on" : "off"}`}>
+			<ContensInner height="140px" className={`contents ${isActive ? "on" : "off"}`}>
 				<Text>숙소 주변 정보를 입력해 주세요.(최대 1,000자)</Text>
 			</ContensInner>
 		</AroundInfoBx>

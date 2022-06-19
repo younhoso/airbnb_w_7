@@ -9,7 +9,6 @@ const ImageRegist = ({name, imgFileValue, onChange}) => {
 	// 이미지 상대경로 저장
 	const handleAddImages = (e) => {
 		const imageLists = e.target.files;
-    let imageUrlLists = [...showImages];
 		setFileSize(true);
 
     for (let i = 0; i < imageLists.length; i++) {
@@ -20,18 +19,21 @@ const ImageRegist = ({name, imgFileValue, onChange}) => {
 			}
 
       const currentImageUrl = URL.createObjectURL(imageLists[i]);
-      imageUrlLists.push(currentImageUrl);
+			setShowImages(showImages.push(currentImageUrl))
     }
 
-	
-
-		if (imageUrlLists.length > 10) {
-      imageUrlLists = imageUrlLists.slice(0, 10);
-    }
-
-		setNum(imageLists.length)
-		setShowImages(imageUrlLists);
-		onChange(name, imageLists)
+		return(
+			showImages.length > 5 ? (
+				window.alert("이미지는 5개까지만 등록할수 있습니다."),
+				setNum(0),
+				setShowImages([]),
+				onChange(name, [])
+			) : (
+				setNum(showImages.length),
+				setShowImages(showImages),
+				onChange(name, showImages)
+			)
+		)
 	}
 
 	// X버튼 클릭 시 이미지 삭제
