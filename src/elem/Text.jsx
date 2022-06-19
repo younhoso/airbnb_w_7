@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const Text = ({value, onChange}) => {
+const Text = ({value, onChange, children}) => {
 	return(
-		<TextBx name="content" value={value} onChange={onChange} placeholder="사장님 한마디 해주세요.(최대 1,000자)"></TextBx>
+		<TextBx name="content" value={value} onChange={onChange} placeholder={children}></TextBx>
 	)
 }
 const TextBx = styled.textarea`
@@ -13,5 +13,8 @@ const TextBx = styled.textarea`
 	border: 1px solid #C4C4C4;
 	border-radius: 0.6em;
 	resize: none;
+	&:focus {
+		border: 2px solid ${(props) => props.borderColor || "black"}
+	}
 `
 export default Text;

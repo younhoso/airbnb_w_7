@@ -4,6 +4,7 @@ import { legacy_createStore as createStore, combineReducers, applyMiddleware } f
 import thunk from 'redux-thunk';
 
 // reducers
+import lodgment from './lodgment';
 import image from './image';
 
 // redux router
@@ -12,6 +13,7 @@ import { connectRouter } from 'connected-react-router';
 
 export const history = createBrowserHistory();
 const rootReducer = combineReducers({
+	lodgment,
 	image,
 	router: connectRouter(history),
 });

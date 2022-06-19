@@ -44,12 +44,20 @@ export const SmallButton = styled.button`
     ${Btn}
     width: 52px;
     height: 26px;
-    background-color: ${(props) => props.background || "black"};
-    color: ${(props) => props.color || "white"};
+    border: 1px solid ${(props) => props.bordercolor || "transparent" };
+    background-color: ${(props) => props.background || "transparent"};
+    color: ${(props) => props.color || "transparent"};
     border-radius: 6px;
     font-size: 9px;
-    position:absolute;
-    top: -37px;
-    right: -160px;
 `
+export const M_PointBtn = styled.button`
+    width: 80px;
+    height: 37px;
+    background: ${(props) => props.scolor};
+    background: linear-gradient(90deg, ${(props) => props.scolor} 0%, ${(props) => props.ecolor} 100%);
+    color: ${(props) => props.color || "transparent"};
+    border-radius: 6px;
+    font-size: 12px;
+`
+
 // export default LargeButton

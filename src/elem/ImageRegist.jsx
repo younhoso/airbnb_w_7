@@ -4,11 +4,11 @@ import styled from "styled-components";
 const ImageRegist = ({name, imgFileValue, onChange}) => {
 	const [showImages, setShowImages] = useState([]);
 	const [fileSize, setFileSize] = useState(true);
+	const [num, setNum] = useState(0);
 	
 	// 이미지 상대경로 저장
 	const handleAddImages = (e) => {
 		const imageLists = e.target.files;
-    let imageUrlLists = [...showImages];
 		setFileSize(true);
 
     for (let i = 0; i < imageLists.length; i++) {
@@ -19,26 +19,38 @@ const ImageRegist = ({name, imgFileValue, onChange}) => {
 			}
 
       const currentImageUrl = URL.createObjectURL(imageLists[i]);
-      imageUrlLists.push(currentImageUrl);
+			setShowImages(showImages.push(currentImageUrl))
     }
 
-		if (imageUrlLists.length > 10) {
-      imageUrlLists = imageUrlLists.slice(0, 10);
-    }
-
-		setShowImages(imageUrlLists);
-		onChange(name, imageLists)
+		return(
+			showImages.length > 5 ? (
+				window.alert("이미지는 5개까지만 등록할수 있습니다."),
+				setNum(0),
+				setShowImages([]),
+				onChange(name, [])
+			) : (
+				setNum(showImages.length),
+				setShowImages(showImages),
+				onChange(name, showImages)
+			)
+		)
 	}
 
 	// X버튼 클릭 시 이미지 삭제
   const handleDeleteImage = (id) => {
     setShowImages(showImages.filter((_, index) => index !== id));
+		setNum(num - 1)
 	};
 
 	return(
 		<ImageRegistBx>
 			<input type="file" multiple id="file" accept="image/png, image/jpeg" onChange={handleAddImages}/>
-			<label htmlFor="file"><i className="ic-plus"></i></label> 
+			<label htmlFor="file">
+				<div className="file-add-inner">
+					<i className="ic-plus"></i>
+					<p className="num num-start">{num}<span className="num num-end">/5</span></p>
+				</div>
+			</label> 
 			{imgFileValue && <button onClick={handleDeleteImage}></button>}
 			{showImages.map((image, idx) => (
 				<ShowImageInner key={idx}>
@@ -52,12 +64,10 @@ const ImageRegist = ({name, imgFileValue, onChange}) => {
 };
 
 const ImageRegistBx = styled.div`
-		line-height: 80px;
 		white-space: nowrap;
     overflow-x: auto;
 		& label {
 			width: 80px;
-			line-height: 80px;
 			display: inline-block;
 			border: 1px dashed #C4C4C4;
 			color: #C4C4C4;
@@ -67,8 +77,26 @@ const ImageRegistBx = styled.div`
 			vertical-align: middle;
 			cursor: pointer;
 			text-align: center;
-			& i {
-				vertical-align: inherit;
+			.file-add-inner {
+				position: relative;
+				height: 80px;
+				& i {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -100%);
+				}
+				p {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, 20%);
+				}
+			}
+			
+			.num {
+				font-size: 14px;
+				line-height: 1;
 			}
 		} 
 		& input[type="file"] {
