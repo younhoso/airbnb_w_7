@@ -20,5 +20,11 @@ export const apis = {
 	del: (id) => api.delete(`api/${id}`),
 	lookups: () => api.get('/accommodation'),
 	lookup: (id) => api.get(`/accommodation/${id}`),
-	search: (value) => api.get(`/api/${value}`)
+	search: (value) => api.get(`/api/${value}`),
+
+	// comment
+	addComment: (id, content) => api.post(`/api/${id}`, { content }),
+	comments: (id) => api.get(`/reviews/${id}`),
+	editComment: (id, content) => api.put(`/api/${id}`, { content }),
+	delComment: (id) => api.delete(`/api/${id}`),
 }

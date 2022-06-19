@@ -66,6 +66,7 @@ const ImageRegist = ({name, imgFileValue, onChange}) => {
 const ImageRegistBx = styled.div`
 		white-space: nowrap;
     overflow-x: auto;
+		overflow-y: hidden;
 		& label {
 			width: 80px;
 			display: inline-block;

@@ -12,8 +12,9 @@ const Write = () => {
 
 const WriteBx = styled.div`
 	max-width: 425px;
-  min-width: 375px;
 	margin: 0 auto;
+	padding: 0 20px;
+	background-color: #fff;
 `
 
 export default Write;

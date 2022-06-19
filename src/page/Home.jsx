@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 import React from "react";
 import styled from "styled-components";
 
@@ -7,7 +6,6 @@ import BottomNav from "../components/BottomNav";
 import PostCard from "../components/PostCard";
 
 const Home = () => {
-
 	return (
 		<Section>
 			<Main>
@@ -19,22 +17,6 @@ const Home = () => {
 				</div>
 			</Main>
 		</Section>
-=======
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { lodgmentsGet } from "../modules/lodgment";
-
-const Home = () => {
-	const dispatch = useDispatch();
-	const lodgment = useSelector((store) => store.lodgment.list)
-
-
-
-	return(
-		<div>
-			메인 페이지
-		</div>
->>>>>>> Stashed changes
 	)
 };
 
@@ -60,7 +42,6 @@ const Main = styled.div`
 		padding-right: 6px;
 	}
 `
-
 
 
 const AddBtn = styled.button`

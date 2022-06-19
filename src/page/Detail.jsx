@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import ImageRegist from "../elem/ImageRegist";
-import { LargeButton, SmallButton } from "../elem/Button";
+import { SmallButton } from "../elem/Button";
 import { lodgmentGetId } from "../modules/lodgment";
-import Star from "../elem/Star";
-import Text from "../elem/Text";
-
-const RATINGS = [1, 2, 3, 4, 5];
+import { commentsGet } from "../modules/comment";
+import CommentWrite from "../components/CommentWrite";
+import CommentList from "../components/CommentList";
 
 const Detail = ({ history, match }) => {
 	const dispatch = useDispatch();
@@ -21,8 +19,6 @@ const Detail = ({ history, match }) => {
 	
 	const handleChange = (name, value) => {
     setValues(function(prevValues){
-			console.log({...prevValues})
-			console.log(1)
 			return {
       	...prevValues,
       	[name]: value,
@@ -30,21 +26,14 @@ const Detail = ({ history, match }) => {
     });
   };
 	
-	const handleSelect = (nextValue) => handleChange("rating", nextValue);
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-	}
-
 	useEffect(() => {
 		dispatch(lodgmentGetId(id));
+		dispatch(commentsGet(id));
 	}, [id]);
 
 	return(
 		<DetailBx>
-			{!lodgment
-				? null
-				: (
+			{lodgment && (
 					<>
 						<div className="detail_tit">
 							<div>
@@ -76,39 +65,15 @@ const Detail = ({ history, match }) => {
 								<SmallButton background={"#F4F4F4"} color={"#000"} className="star-write"><i className="ic-star-write"></i>댓글쓰기</SmallButton>
 							</div>
 							<div className="comment_write">
-								<CommentForm onSubmit={handleSubmit}>
-									<div className="satisfaction_inner">
-										<div className="satisfaction_close">
-											<p>만족도를 알려주세요.</p>
-											<button className="close_btn"><i className="ic-close"></i></button>
-										</div>
-										<div className="satisfaction_info">
-											<p>만족도</p>
-											<div className="star_inner">
-												{
-													RATINGS.map((item, idx) => {
-														return( 
-															<Star key={idx} 
-															selected={values.rating >= item}
-															rating={values.rating}
-															item={item}
-															onSelect={handleSelect}/>
-														)
-													})
-												}
-											</div>
-										</div>
-										<ImageRegist name="imgFile" imgFileValue={values.imgFile} onChange={handleChange}></ImageRegist>
-										<Text>리뷰를 작성해주세요.(최대 1,000자)</Text>
-									</div>
-									<LargeButton background="#000" type="submit">저장하기</LargeButton>
-								</CommentForm>
+								<CommentWrite name="rating" values={values.rating} onChange={handleChange}/>
+							</div>
+							<div>
+								<CommentList></CommentList>
 							</div>
 						</div>
 					</>
 				)
 			}
-			
 		</DetailBx>
 	)
 };
@@ -116,13 +81,19 @@ const Detail = ({ history, match }) => {
 const DetailBx = styled.div`
 	max-width: 425px;
 	margin: 0 auto;
+	background-color: #fff;
 	.detail_tit {
 		display: flex;
 		justify-content: space-between;
 		padding: 20px 20px 0 20px;
 		h1 {
+			width: 200px;
 			font-size: 1.2rem;
 			font-weight: 600;
+			display: inline-block;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 		p {
 			font-size: 12px;
@@ -202,11 +173,11 @@ const DetailBx = styled.div`
 				font-size: 22px;
 			}
 		}
-	}
-`
 
-const CommentForm = styled.form`
-	
+		.text_inner {
+			margin: 10px 0;
+		}
+	}
 `
 
 export default Detail;

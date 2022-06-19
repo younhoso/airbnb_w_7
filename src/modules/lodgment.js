@@ -1,7 +1,6 @@
 import {createAction, handleActions} from "redux-actions";
 import produce from "immer";
 import { apis } from "../shared/api";
-import { imageCreators } from './image';
 
 // action
 const LOAD = 'lodgment/LOAD';
@@ -29,7 +28,6 @@ export const lodgmentAdd = (content) => {
 			.then(() => {
 				dispatch(addLodgment(content));
 				history.push('/');
-				dispatch(imageCreators.setPreview(null));
 			})
 			.catch((err) => {
 				window.alert('로그인한 회원만 작성할 수 있습니다!');
@@ -55,7 +53,6 @@ export const lodgmentsGet = () =>
 		try {
 			const { data } = await apis.lookups();
 			dispatch(loadLodgments(data));
-			dispatch(imageCreators.setPreview(null))
 		} catch (e) {
 			// console.log(`아티클 조회 오류 발생!${e}`);
 		}
@@ -66,7 +63,7 @@ export const lodgmentGetId = (id) =>
 	async (dispatch, getState, { history }) => {
 		try {
 			const { data } = await apis.lookup(id);
-			dispatch(loadLodgmentGetId(data));
+			dispatch(loadLodgmentGetId(data.result));
 		} catch (e) {
 			// console.log(`개별 아티클 조회 오류 발생!${e}`);
 		}
