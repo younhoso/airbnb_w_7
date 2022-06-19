@@ -27,7 +27,7 @@ export const LargeButton = styled.button`
     ${Btn}
     color: white;
     background-color: ${(props) => props.background || "black"};
-    width: 343px;
+    width: 100%;
     height: 52px;
     border-radius: 10px;
 `
@@ -42,7 +42,7 @@ export const MediunButton = styled.button`
 `
 export const SmallButton = styled.button`
     ${Btn}
-    width: 52px;
+    width: 68px;
     height: 26px;
     border: 1px solid ${(props) => props.bordercolor || "transparent" };
     background-color: ${(props) => props.background || "transparent"};

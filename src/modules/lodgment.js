@@ -1,7 +1,6 @@
 import {createAction, handleActions} from "redux-actions";
 import produce from "immer";
 import { apis } from "../shared/api";
-import { imageCreators } from './image';
 
 // action
 const LOAD = 'lodgment/LOAD';
@@ -12,19 +11,13 @@ const SEARCH = 'lodgment/SEARCH';
 
 // action creator
 const loadLodgments = createAction(LOAD, (lodgments) => ({lodgments}));
-const loadLodgmentGetId = createAction(LOAD_ID, (id) => ({ id }));
+const loadLodgmentGetId = createAction(LOAD_ID, (id) => ({id}));
 const addLodgment = createAction(ADD_LODGMENT, (lodgments) => ({lodgments}));
 const editLodgment = createAction(EDIT, (id, newLodgment) => ({
 	id,
 	newLodgment,
 }));
 const searchLodgment = createAction(SEARCH, (lodgments) => ({ lodgments }));
-
-// initialState
-const initialState = {
-	list: [],
-	lodgment: null,
-}
 
 // Thunk function
 // 데이터 서버로 전송
@@ -35,7 +28,6 @@ export const lodgmentAdd = (content) => {
 			.then(() => {
 				dispatch(addLodgment(content));
 				history.push('/');
-				dispatch(imageCreators.setPreview(null));
 			})
 			.catch((err) => {
 				window.alert('로그인한 회원만 작성할 수 있습니다!');
@@ -61,7 +53,6 @@ export const lodgmentsGet = () =>
 		try {
 			const { data } = await apis.lookups();
 			dispatch(loadLodgments(data));
-			dispatch(imageCreators.setPreview(null))
 		} catch (e) {
 			// console.log(`아티클 조회 오류 발생!${e}`);
 		}
@@ -72,7 +63,7 @@ export const lodgmentGetId = (id) =>
 	async (dispatch, getState, { history }) => {
 		try {
 			const { data } = await apis.lookup(id);
-			dispatch(loadLodgmentGetId(data));
+			dispatch(loadLodgmentGetId(data.result));
 		} catch (e) {
 			// console.log(`개별 아티클 조회 오류 발생!${e}`);
 		}
@@ -101,13 +92,19 @@ export const lodgmentDel = (id) =>
 		} catch (e) {}
 	};
 
+// initialState
+const initialState = {
+	list: [],
+	lodgment: null,
+}
+
 // reducer
 export default handleActions(
 	{
 		[LOAD]: (state, action) => {
 			return {
 				...state,
-				list: action.payload.articles,
+				list: action.payload.lodgments,
 			};
 		},
 		[LOAD_ID]: (state, action) => {
@@ -118,7 +115,7 @@ export default handleActions(
 		},
 		[ADD_LODGMENT]: (state, action) =>
 			produce(state, (draft) => {
-				draft.list.push(action.payload.articles);
+				draft.list.push(action.payload.lodgments);
 			}),
 		[EDIT]: (state, action) => {
 			return {
@@ -128,7 +125,7 @@ export default handleActions(
 		},
 		[SEARCH]: (state, action) =>
 			produce(state, (draft) => {
-				draft.list = action.payload.articles;
+				draft.list = action.payload.lodgments;
 			}),
 	},
 	initialState,

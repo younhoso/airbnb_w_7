@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import styled from "styled-components";
 import Input from "../elem/Input";
-import MediumButton from "../elem/MediumButton"
+import {MediunButton} from "../elem/Button"
 
 const AddressInfo = () => {
 	const [isActive, setActive] = useState("false");
@@ -19,7 +19,7 @@ const AddressInfo = () => {
 			<ContensInner height="180px" className={`contents ${isActive ? "on" : "off"}`}>
 				<div className="number box">
 					<Input height="40px" theme={{borderColor: "#C4C4C4"}} />
-					<MediumButton width="78px" theme={{ fontColor: "#000000", bgColor: "#F4F4F4" }}>우편번호</MediumButton>
+					<MediunButton width="78px" theme={{ fontColor: "#000000", bgColor: "#F4F4F4" }}>우편번호</MediunButton>
 				</div>
 				<div className="box">
 					<Input width="100%" height="40px" theme={{borderColor: "#C4C4C4"}}>주소</Input>

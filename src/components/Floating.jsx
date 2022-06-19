@@ -11,7 +11,7 @@ const Floating = () => {
 					<span className="txt_m">30,000,000원</span> <span className="txt_s">/ 박</span>
 					<div>6월 19일 ~ 24일</div>
 				</div>
-				<M_PointBtn scolor="#471868" ecolor="#38157D" background="#C4C4C4" type="submit">등록하기</M_PointBtn>
+				<M_PointBtn scolor="#471868" ecolor="#38157D" background="#C4C4C4" color="#fff" type="submit">등록하기</M_PointBtn>
 			</div>
 		</FloatingBx>
 	)
@@ -19,9 +19,9 @@ const Floating = () => {
 
 const FloatingBx = styled.div`
 	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	max-width: 425px;
+	margin: 0 auto;
+	padding: 0 20px;
 	background-color: #fff;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3); 
 	position: fixed;
@@ -32,7 +32,6 @@ const FloatingBx = styled.div`
 		font-size: 18px;
 	}
 	>div {
-  	min-width: 425px;
 		padding: 10px 0;
 		box-sizing: border-box;
 		margin: 0 auto;

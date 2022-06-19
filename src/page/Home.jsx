@@ -6,7 +6,6 @@ import BottomNav from "../components/BottomNav";
 import PostCard from "../components/PostCard";
 
 const Home = () => {
-
 	return (
 		<Section>
 			<Main>
@@ -43,7 +42,6 @@ const Main = styled.div`
 		padding-right: 6px;
 	}
 `
-
 
 
 const AddBtn = styled.button`
