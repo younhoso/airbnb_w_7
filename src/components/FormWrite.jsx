@@ -42,7 +42,7 @@ const FormWrite = () => {
 		const resOptions = {
 			body: values
 		};
-		console.log(resOptions.body)
+		// console.log(resOptions.body)
   };
 
 	return(

@@ -7,11 +7,13 @@ const UPLOAD = 'image/UPLOAD';
 const setPreview = createAction(PREVIEW, (preview) => ({ preview }));
 const imageUpload = createAction(UPLOAD, (imageUrl) => ({ imageUrl }));
 
+// initialState
 const initialState = {
 	imageUrl: [],
 	preview: null,
 };
 
+// reducer
 export default handleActions(
 	{
 		[UPLOAD]: (state, action) =>

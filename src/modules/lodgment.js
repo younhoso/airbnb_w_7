@@ -12,19 +12,13 @@ const SEARCH = 'lodgment/SEARCH';
 
 // action creator
 const loadLodgments = createAction(LOAD, (lodgments) => ({lodgments}));
-const loadLodgmentGetId = createAction(LOAD_ID, (id) => ({ id }));
+const loadLodgmentGetId = createAction(LOAD_ID, (id) => ({id}));
 const addLodgment = createAction(ADD_LODGMENT, (lodgments) => ({lodgments}));
 const editLodgment = createAction(EDIT, (id, newLodgment) => ({
 	id,
 	newLodgment,
 }));
 const searchLodgment = createAction(SEARCH, (lodgments) => ({ lodgments }));
-
-// initialState
-const initialState = {
-	list: [],
-	lodgment: null,
-}
 
 // Thunk function
 // 데이터 서버로 전송
@@ -101,13 +95,19 @@ export const lodgmentDel = (id) =>
 		} catch (e) {}
 	};
 
+// initialState
+const initialState = {
+	list: [],
+	lodgment: null,
+}
+
 // reducer
 export default handleActions(
 	{
 		[LOAD]: (state, action) => {
 			return {
 				...state,
-				list: action.payload.articles,
+				list: action.payload.lodgments,
 			};
 		},
 		[LOAD_ID]: (state, action) => {
@@ -118,7 +118,7 @@ export default handleActions(
 		},
 		[ADD_LODGMENT]: (state, action) =>
 			produce(state, (draft) => {
-				draft.list.push(action.payload.articles);
+				draft.list.push(action.payload.lodgments);
 			}),
 		[EDIT]: (state, action) => {
 			return {
@@ -128,7 +128,7 @@ export default handleActions(
 		},
 		[SEARCH]: (state, action) =>
 			produce(state, (draft) => {
-				draft.list = action.payload.articles;
+				draft.list = action.payload.lodgments;
 			}),
 	},
 	initialState,
