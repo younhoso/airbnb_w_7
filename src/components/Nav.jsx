@@ -1,12 +1,14 @@
 import React from 'react'
+
 import styled from "styled-components";
+import Beach from "../assets/images/Beach.png"
 
 function Nav() {
     return (
         <div>
             <NavSection>
                 <button>
-                    <Img src="/images/surfing.png" alt="" />
+                    <Img src={Beach} alt="" />
                     <p>서핑</p>
                 </button>
                 <button>
