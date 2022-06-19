@@ -174,21 +174,6 @@ const LoginZoneText = styled.p`
 //   }
 // `
 
-const UserBtn = styled.button`
-  width: 40%;
-  background-color:#000000;
-  color: white;
-  border: none;
-  cursor: pointer;
-  height: 40px;
-  border-radius: 6px;
-  margin: 10px 0;
-  transition: all 0.5s;
-  &:hover {
-    background-color: #666666;
-  }
-`
-
 const AccountSection = styled.div`
   box-sizing: border-box;
   width: 100%;
