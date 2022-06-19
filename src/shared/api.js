@@ -19,7 +19,6 @@ export const apis = {
 	edit: (id, contents) => api.put(`api/${id}`, contents),
 	del: (id) => api.delete(`api/${id}`),
 	lookups: () => api.get('/api/'),
-	lookup: (id) => api.get(`/api/${id}`),
-	search: (value) => api.get(`/api/${value}`),
-	
+	lookup: (id) => api.get(`http://localhost:5001/accommodation/${id}`),
+	search: (value) => api.get(`/api/${value}`)
 }

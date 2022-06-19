@@ -13,6 +13,8 @@ const TextBx = styled.textarea`
 	border: 1px solid #C4C4C4;
 	border-radius: 0.6em;
 	resize: none;
-	margin: 10px 0 20px 0;
+	&:focus {
+		border: 2px solid ${(props) => props.borderColor || "black"}
+	}
 `
 export default Text;
