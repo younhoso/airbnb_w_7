@@ -17,8 +17,8 @@ const Router = () => {
 			<Route path='/login' component={Login} />
 			<Route path='/signup' component={SignUp} />
 			<Route path='/write' component={Write} />
-			<Route path='/Detail/:id' component={Detail} />
-			<Route path='/Detail/:id/edit' component={DetailEdit} />
+			<Route path='/detail/:id' component={Detail} />
+			<Route path='/detail/:id/edit' component={DetailEdit} />
 			<Route path='/component-test' component={ComponentTest} />
 			<Redirect from='*' to='/' />
 		</Switch>

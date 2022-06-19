@@ -26,8 +26,10 @@ function SignUp() {
                     <p>이메일(ID)</p>
                     <Input width="343px" height="52px" id="id" theme={{ borderColor: "#C4C4C4" }} type="email" required children="아이디(이메일)" />
                 </label>
-                <div style={{ position: "relative" }}>
-                    <SmallButton>중복확인</SmallButton>
+                <div style={{ position:"relative"}}>
+                    <div style={{ position:"absolute", top: "-37px", right: "-160px"}}>
+                        <SmallButton>중복확인</SmallButton>
+                    </div>
                 </div>
                 <label htmlFor="pw" style={{ marginBottom: "10px" }}>
                     <p>비밀번호</p>
