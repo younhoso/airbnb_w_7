@@ -8,13 +8,23 @@ const api = axios.create({
 	},
 });
 
-api.interceptors.request.use(function(config) {
+api.interceptors.request.use(function (config) {
 	const accessToken = document.cookie.split('=')[1];
 	config.headers.common['X-AUTH-TOKEN'] = `${accessToken}`;
 	return config;
 });
 
 export const apis = {
+	signup: (userId, password, passwordCheck, name, birth, gender) => api.post('/api/users/signup', {
+		userId,
+		password,
+		passwordCheck,
+		name,
+		birth,
+		gender
+	}),
+	dupcheck: (userId) => api.post('/api/users/dup_userId', { userId }),
+	login: (userId, password) => api.post('/api/users/login', { userId, password }),
 	add: (contents) => api.post('/api/accommodations', contents),
 	edit: (id, contents) => api.put(`api/${id}`, contents),
 	del: (id) => api.delete(`api/${id}`),

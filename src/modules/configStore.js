@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 
 // reducers
 import lodgment from './lodgment';
+import user from './user';
 import comment from './comment';
 
 // redux router
@@ -13,6 +14,7 @@ import { connectRouter } from 'connected-react-router';
 
 export const history = createBrowserHistory();
 const rootReducer = combineReducers({
+	user,
 	lodgment,
 	comment,
 	router: connectRouter(history),

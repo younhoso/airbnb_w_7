@@ -8,14 +8,14 @@ import PostCard from "../components/PostCard";
 const Home = () => {
 	return (
 		<Section>
+			<Nav />
 			<Main>
-				<Nav />
 				<PostCard />
-				<BottomNav />
 				<div className="btn-wrap">
 					<Link to="/write"><AddBtn><i className="ic-plus"></i></AddBtn></Link>
 				</div>
 			</Main>
+			<BottomNav />
 		</Section>
 	)
 };
@@ -26,6 +26,9 @@ const Section = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items:center;
+	div {
+		width: 100%;
+	}
 `
 const Main = styled.div`
     width: 375px;

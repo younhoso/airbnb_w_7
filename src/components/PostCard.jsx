@@ -4,33 +4,35 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"
 
+import Summer from '../assets/images/summer.png'
+
 function PostCard() {
-    const settings = {
-        dots: true,
-        arrows: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-    };
-    return (
-        <div>
-            <Card>
-                <ImgSlider>
-                    <Slider {...settings}>
-                        <CardImg src="/images/summer.png" />
-                        <CardImg src="/images/summer.png" />
-                        <CardImg src="/images/summer.png" />
-                    </Slider>
-                </ImgSlider>
-                <div className="content-text">
-                    <CardTitle>양평 스마일카라반펜션</CardTitle>
-                    <ReservText>6월 23~30 (최근 예약 가능한 날짜)</ReservText>
-                </div>
-                <ChargeText>79,000 / 박</ChargeText>
-            </Card>
+  const settings = {
+    dots: true,
+    arrows: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+  return (
+    <div>
+      <Card>
+        <ImgSlider>
+          <Slider {...settings}>
+            <CardImg src={Summer} />
+            <CardImg src={Summer} />
+            <CardImg src={Summer} />
+          </Slider>
+        </ImgSlider>
+        <div className="content-text">
+          <CardTitle>양평 스마일카라반펜션</CardTitle>
+          <ReservText>6월 23~30 (최근 예약 가능한 날짜)</ReservText>
         </div>
-    )
+        <ChargeText>79,000 / 박</ChargeText>
+      </Card>
+    </div>
+  )
 }
 
 const Card = styled.article`
@@ -40,7 +42,7 @@ const Card = styled.article`
   border-radius: 8px;
   margin: 0 auto;
   margin-bottom: 20px;
-  &:nth-child(2){
+  &:first-child{
 	margin-top: 100px;
   }
   .content-text {
