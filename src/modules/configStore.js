@@ -5,8 +5,8 @@ import thunk from 'redux-thunk';
 
 // reducers
 import lodgment from './lodgment';
-import image from './image';
 import user from './user';
+import comment from './comment';
 
 // redux router
 import { createBrowserHistory } from 'history';
@@ -16,7 +16,7 @@ export const history = createBrowserHistory();
 const rootReducer = combineReducers({
 	user,
 	lodgment,
-	image,
+	comment,
 	router: connectRouter(history),
 });
 

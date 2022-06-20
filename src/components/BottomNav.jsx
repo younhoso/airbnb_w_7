@@ -1,6 +1,9 @@
 import React from 'react'
 import styled from "styled-components";
 import { Link } from 'react-router-dom'
+import Home from "../assets/images/home.png"
+import Search from "../assets/images/search.png"
+import User from "../assets/images/user.png"
 
 function BottomNav() {
     return (
@@ -8,13 +11,13 @@ function BottomNav() {
             <BottomNavSection>
                 <div className='icon-box'>
                     <Link to="/">
-                        <Img src="/images/home.png" alt="" />
+                        <Img src={Home} alt="" />
                     </Link>
                     <button>
-                        <Img src="/images/search.png" alt="" />
+                        <Img src={Search} alt="" />
                     </button>
                     <Link to="/login">
-                        <Img src="/images/user.png" alt="" />
+                        <Img src={User} alt="" />
                     </Link>
                 </div>
             </BottomNavSection>

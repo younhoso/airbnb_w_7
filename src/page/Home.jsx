@@ -1,20 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-
-// Component
+import { Link } from 'react-router-dom';
 import Nav from "../components/Nav";
 import BottomNav from "../components/BottomNav";
 import PostCard from "../components/PostCard";
 
 const Home = () => {
-
 	return (
 		<Section>
 			<Nav />
 			<Main>
 				<PostCard />
 				<div className="btn-wrap">
-					<AddBtn>+</AddBtn>
+					<Link to="/write"><AddBtn><i className="ic-plus"></i></AddBtn></Link>
 				</div>
 			</Main>
 			<BottomNav />
@@ -49,17 +47,17 @@ const Main = styled.div`
 `
 
 
-
 const AddBtn = styled.button`
-  width: 50px;
-  height: 50px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   background-color: white;
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 500;
   color: #212121;
   display: flex;
   justify-content: center;
+	align-items: center;
   line-height: 40px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 `

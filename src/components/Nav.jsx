@@ -1,5 +1,11 @@
 import React from 'react'
+
 import styled from "styled-components";
+import Beach from "../assets/images/Beach.png"
+import Surfing from "../assets/images/surfing.png"
+import Camp from "../assets/images/campsite.png"
+import Log from "../assets/images/log.png"
+import Share from "../assets/images/share-house.png"
 
 function Nav() {
     return (
@@ -7,23 +13,23 @@ function Nav() {
             <NavSection>
                 <div className='icon-box'>
                     <button>
-                        <Img src="/images/surfing.png" alt="" />
+                        <Img src={Surfing} alt="" />
                         <p>서핑</p>
                     </button>
                     <button>
-                        <Img src="/images/Beach.png" alt="" />
+                        <Img src={Beach} alt="" />
                         <p>해변근처</p>
                     </button>
                     <button>
-                        <Img src="/images/campsite.png" alt="" />
+                        <Img src={Camp} alt="" />
                         <p>캠핑장</p>
                     </button>
                     <button>
-                        <Img src="/images/log.png" alt="" />
+                        <Img src={Log} alt="" />
                         <p>통나무집</p>
                     </button>
                     <button>
-                        <Img src="/images/share-house.png" alt="" />
+                        <Img src={Share} alt="" />
                         <p>셰어하우스</p>
                     </button>
                 </div>
