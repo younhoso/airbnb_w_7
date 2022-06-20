@@ -1,31 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Input from '../elem/Input';
 import { LargeButton } from '../elem/Button'
+import { useDispatch } from "react-redux";
+import { loginDB } from "../modules/user";
 
 const Login = () => {
-	return (
-		<AccountSection>
-			<FormSection>
-				<h1>Log In</h1>
-				<label htmlFor="id" >
-					<p>이메일(ID)</p>
-					<Input width="343px" height="52px" id="id" theme={{ borderColor: "#C4C4C4" }} type="email" required children="test@example.com" />
-				</label>
-				<label htmlFor="pw" style={{ marginBottom: "15px" }}>
-					<p>비밀번호</p>
-					<Input width="343px" height="52px" theme={{ borderColor: "#C4C4C4" }} id="pw" required type="password" children="비밀번호" />
-				</label>
-				<div>
-					<p>아이디 찾기</p>
-					<p>비밀번호 찾기</p>
-				</div>
-				<LargeButton>Log In</LargeButton>
-				<LoginZoneText>계정이 없으신가요?</LoginZoneText>
-				<LargeButton>Sign Up</LargeButton>
-			</FormSection>
-		</AccountSection >
-	)
+  const dispatch = useDispatch();
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const handleLogin = () => {
+    dispatch(loginDB(email, password))
+  }
+
+  return (
+    <AccountSection>
+      <FormSection>
+        <h1>Log In</h1>
+        <label htmlFor="id" >
+          <p>이메일(ID)</p>
+          <Input width="343px" height="52px" id="id" theme={{ borderColor: "#C4C4C4" }} type="email" required children="test@example.com" onChange={(e) => { setEmail(e.target.value) }} />
+        </label>
+        <label htmlFor="pw" style={{ marginBottom: "15px" }}>
+          <p>비밀번호</p>
+          <Input width="343px" height="52px" theme={{ borderColor: "#C4C4C4" }} id="pw" required type="password" children="비밀번호" onChange={(e) => { setPassword(e.target.value) }} />
+        </label>
+        <div>
+          <p>아이디 찾기</p>
+          <p>비밀번호 찾기</p>
+        </div>
+        <LargeButton onClick={handleLogin}>Log In</LargeButton>
+        <LoginZoneText>계정이 없으신가요?</LoginZoneText>
+        <LargeButton>Sign Up</LargeButton>
+      </FormSection>
+    </AccountSection >
+  )
 };
 
 const FormSection = styled.div`

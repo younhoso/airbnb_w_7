@@ -40,7 +40,7 @@ const Card = styled.article`
   border-radius: 8px;
   margin: 0 auto;
   margin-bottom: 20px;
-  &:nth-child(2){
+  &:first-child{
 	margin-top: 100px;
   }
   .content-text {
