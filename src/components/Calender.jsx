@@ -1,21 +1,29 @@
 import React,{useState} from "react";
 import styled from "styled-components";
+import Calendar from "react-calendar";
+import 'react-calendar/dist/Calendar.css';
 
 const Calender = () => {
+	const [value, onChange] = useState([new Date(), new Date()]);
+	const [startDate, setStartDate] = useState(new Date());
 	const [isActive, setActive] = useState("false");
 
 	const hanleDropDownBox = (e) => {
 		setActive(!isActive);
 	}
-
+	const changeDate = (e) => {
+    setStartDate(e)
+  }
 	return(
 		<CalenderBx>
 			<div className="boxInner" onClick={hanleDropDownBox}>
 				<h2>켈린더 입력</h2>
 				<i className={`ic-arrow-top ${isActive ? "on" : "off"}`}></i>
 			</div>
-			<CalenderInner height="180px" className={`contents ${isActive ? "on" : "off"}`}>
+			<CalenderInner height="580px" className={`contents ${isActive ? "on" : "off"}`}>
 				{/* 켈린더 라이브러리 연결할 곳 */}
+				<Calendar  value={value} onChange={changeDate}/>
+
 			</CalenderInner>
 		</CalenderBx>
 	)
@@ -59,6 +67,9 @@ const CalenderInner = styled.div`
 	overflow: hidden;
 	padding: 0 20px;
 	box-sizing: border-box;
+	.react-calendar {
+		border: 1px solid transparent;
+	}
 `
 
 export default Calender;
