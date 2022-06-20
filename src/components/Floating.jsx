@@ -19,8 +19,6 @@ const Floating = () => {
 
 const FloatingBx = styled.div`
 	width: 100%;
-	max-width: 425px;
-	margin: 0 auto;
 	padding: 0 20px;
 	background-color: #fff;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3); 
@@ -32,7 +30,9 @@ const FloatingBx = styled.div`
 		font-size: 18px;
 	}
 	>div {
-		padding: 10px 0;
+		max-width: 425px;
+		margin: 0 auto;
+		padding: 10px;
 		box-sizing: border-box;
 		margin: 0 auto;
 		display: flex;

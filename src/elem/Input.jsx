@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from "styled-components";
 
-function Input({ id, className, width, height, theme, children, defaultValue, onChange, type }) {
+function Input({ id, className, width, height, theme, children, defaultValue, onChange, type, name, value }) {
     return (
         <InputBoxInner width={width}>
-            <InputBox id={id} className={className} defaultValue={defaultValue} height={height} theme={theme} placeholder={children} onChange={onChange} type={type} />
+            <InputBox name={name} id={id} className={className} defaultValue={defaultValue} height={height} theme={theme} placeholder={children} onChange={onChange} type={type} values={value}/>
         </InputBoxInner>
     )
 }

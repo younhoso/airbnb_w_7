@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Text = ({value, onChange, children}) => {
 	return(
-		<TextBx name="content" value={value} onChange={onChange} placeholder={children}></TextBx>
+		<TextBx name="desc1_hanmadi" value={value} onChange={onChange} placeholder={children}></TextBx>
 	)
 }
 const TextBx = styled.textarea`

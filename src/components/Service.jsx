@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import styled from "styled-components";
 
-const Service = () => {
+const Service = ({oncheck}) => {
 	const [isActive, setActive] = useState("false");
 
   const [footCheck, setfootCheck] = useState(false);
@@ -21,100 +21,112 @@ const Service = () => {
 		setActive(!isActive);
 	}
   
-  const footBtnEvent = () =>{
-    if(footCheck === false) {
+  const footBtnEvent = (e) =>{
+    if(!footCheck) {
       setfootCheck(true)
     }else {
       setfootCheck(false)
     }
+		oncheck(e.currentTarget.checked, "족구장")
   };
   
-  const WiFiBtnEvent = () =>{
-    if(wiFiCheck === false) {
+  const WiFiBtnEvent = (e) =>{
+    if(!wiFiCheck) {
       setWiFiCheck(true)
     }else {
       setWiFiCheck(false)
     }
+		oncheck(e.currentTarget.checked, "와이파이")
   };
   
-  const PickUpBtnEvent =()=>{
-    if(pickUpCheck === false) {
+  const PickUpBtnEvent = (e) =>{
+    if(!pickUpCheck) {
       setPickUpCheck(true)
     }else {
       setPickUpCheck(false)
     }
+		oncheck(e.currentTarget.checked, "픽업가능")
   };
 
-	const freeParkingBtnEvent =()=>{
-    if(freeParkingCheck === false) {
+	const freeParkingBtnEvent = (e)=>{
+    if(!freeParkingCheck) {
       setfreeParkingCheck(true)
     }else {
       setfreeParkingCheck(false)
     }
+		oncheck(e.currentTarget.checked, "무료주차")
   };
 
-	const bbqBtnEvent =()=>{
-    if(bbQCheck === false) {
+	const bbqBtnEvent = (e)=>{
+    if(!bbQCheck) {
       setBbqCheck(true)
     }else {
       setBbqCheck(false)
     }
+		oncheck(e.currentTarget.checked, "BBQ")
   };
 
-	const parkingBtnEvent =()=>{
-    if(parkingCheck === false) {
+	const parkingBtnEvent = (e)=>{
+    if(!parkingCheck) {
       setParkingCheck(true)
     }else {
       setParkingCheck(false)
     }
+		oncheck(e.currentTarget.checked, "주차장")
   };
 
-	const tvBtnEvent =()=>{
-    if(tvCheck === false) {
+	const tvBtnEvent = (e)=>{
+    if(!tvCheck) {
       setTvCheck(true)
     }else {
-      setTvCheck(false)
+			setTvCheck(false)
     }
+		oncheck(e.currentTarget.checked, "TV")
   };
 
-	const airBtnEvent = () =>{
-    if(airCheck === false) {
+	const airBtnEvent = (e) =>{
+    if(!airCheck) {
       setAirCheck(true)
     }else {
       setAirCheck(false)
     }
+		oncheck(e.currentTarget.checked, "에어컨")
   };
 
-	const showerBtnEvent = () =>{
-    if(showerCheck === false) {
+	const showerBtnEvent = (e) =>{
+    if(!showerCheck) {
       setShowerCheck(true)
     }else {
       setShowerCheck(false)
     }
+		oncheck(e.currentTarget.checked, "객실샤워실")
   };
 
-	const smokingBtnEvent = () =>{
-    if(smokingCheck === false) {
+	const smokingBtnEvent = (e) =>{
+    if(!smokingCheck) {
       setSmokingCheck(true)
     }else {
       setSmokingCheck(false)
     }
+		oncheck(e.currentTarget.checked, "금연")
   };
 
-	const dogBtnEvent = () =>{
-    if(dogCheck === false) {
+	const dogBtnEvent = (e) =>{
+    if(!dogCheck) {
       setdogCheck(true)
     }else {
       setdogCheck(false)
     }
+		oncheck(e.currentTarget.checked, "반려견동반")
   };
 
-	const cookingBtnEvent = () =>{
-    if(cookingCheck === false) {
+	const cookingBtnEvent = (e) =>{
+    if(!cookingCheck) {
       setCookingBtnEvent(true)
     }else {
       setCookingBtnEvent(false)
     }
+		oncheck(e.currentTarget.checked, "객실내취사")
   };
 
 	return(

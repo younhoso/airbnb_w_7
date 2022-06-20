@@ -1,10 +1,34 @@
 import React,{useState} from "react";
 import styled from "styled-components";
+import { useDaumPostcodePopup } from 'react-daum-postcode';
 import Input from "../elem/Input";
 import {MediunButton} from "../elem/Button"
 
 const AddressInfo = () => {
 	const [isActive, setActive] = useState("false");
+	const open = useDaumPostcodePopup("https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js");
+
+	const handleComplete = (data) => {
+    let fullAddress = data.address;
+    let extraAddress = '';
+
+    if (data.addressType === 'R') {
+      if (data.bname !== '') {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== '') {
+        extraAddress += extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
+      }
+      fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
+    }
+		console.log(data);
+    // console.log(fullAddress);
+		// console.log(extraAddress);
+  };
+
+	const handleClick = () => {
+    open({ onComplete: handleComplete });
+  };
 
 	const hanleDropDownBox = (e) => {
 		setActive(!isActive);
@@ -19,7 +43,7 @@ const AddressInfo = () => {
 			<ContensInner height="180px" className={`contents ${isActive ? "on" : "off"}`}>
 				<div className="number box">
 					<Input height="40px" theme={{borderColor: "#C4C4C4"}} />
-					<MediunButton width="78px" theme={{ fontColor: "#000000", bgColor: "#F4F4F4" }}>우편번호</MediunButton>
+					<MediunButton width="78px" theme={{ fontColor: "#000000", bgColor: "#F4F4F4" }} onClick={handleClick}>우편번호</MediunButton>
 				</div>
 				<div className="box">
 					<Input width="100%" height="40px" theme={{borderColor: "#C4C4C4"}}>주소</Input>
@@ -28,6 +52,7 @@ const AddressInfo = () => {
 					<Input width="100%" height="40px" theme={{borderColor: "#C4C4C4"}}>상세주소</Input>
 				</div>
 			</ContensInner>
+
 		</DropDownBx>
 	)
 };

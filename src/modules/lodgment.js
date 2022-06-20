@@ -22,6 +22,7 @@ const searchLodgment = createAction(SEARCH, (lodgments) => ({ lodgments }));
 // Thunk function
 // 데이터 서버로 전송
 export const lodgmentAdd = (content) => {
+	console.log(content)
 	return function (dispatch, getState, { history }) {
 		apis
 			.add(content)
@@ -63,7 +64,7 @@ export const lodgmentGetId = (id) =>
 	async (dispatch, getState, { history }) => {
 		try {
 			const { data } = await apis.lookup(id);
-			dispatch(loadLodgmentGetId(data.result));
+			dispatch(loadLodgmentGetId(data.accommodation));
 		} catch (e) {
 			// console.log(`개별 아티클 조회 오류 발생!${e}`);
 		}
@@ -94,8 +95,19 @@ export const lodgmentDel = (id) =>
 
 // initialState
 const initialState = {
-	list: [],
-	lodgment: null,
+	photos: [],
+	category: '',
+  accName: '',
+	openAt: '',
+	closeAt: '',
+	address: '',
+  desc1_hanmadi: '',
+	desc2_surroundings: '',
+	desc3_notice: '',
+	desc4_basics: '',
+	facilities: [],
+	charge: 0,
+  rating: 0,
 }
 
 // reducer
