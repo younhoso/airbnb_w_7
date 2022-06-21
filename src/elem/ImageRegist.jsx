@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { apis } from "../shared/api";
 
 const ImageRegist = ({name, imgFileValue, onChange}) => {
 	const [showImages, setShowImages] = useState([]);
 	const [fileSize, setFileSize] = useState(true);
 	const [num, setNum] = useState(0);
 	
-	// 이미지 상대경로 저장
+	// 이미지 저장
 	const handleAddImages = (e) => {
 		const imageLists = e.target.files;
 		setFileSize(true);
@@ -18,7 +19,7 @@ const ImageRegist = ({name, imgFileValue, onChange}) => {
 				return;
 			}
 
-      const currentImageUrl = URL.createObjectURL(imageLists[i]);
+			const currentImageUrl = URL.createObjectURL(imageLists[i]);
 			setShowImages(showImages.push(currentImageUrl))
     }
 

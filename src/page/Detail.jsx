@@ -10,6 +10,9 @@ import CommentList from "../components/CommentList";
 const Detail = ({ history, match }) => {
 	const dispatch = useDispatch();
 	const lodgment = useSelector((store) => store.lodgment.lodgment)
+	const comment = useSelector((store) => store.comment.comments.review)
+	// console.log(lodgment)
+	// console.log(comment)
 	const {params: { id }} = match;
 	const [values, setValues] = useState({
 		content: '',
@@ -67,9 +70,16 @@ const Detail = ({ history, match }) => {
 							<div className="comment_write">
 								<CommentWrite name="rating" values={values.rating} onChange={handleChange}/>
 							</div>
-							<div>
-								<CommentList></CommentList>
-							</div>
+							<ul>
+								{ comment && (
+									comment.map((el, idx) => {
+										return(
+											<CommentList key={idx} item={el}></CommentList>
+										)
+									})
+									)
+								}
+							</ul>
 						</div>
 					</>
 				)

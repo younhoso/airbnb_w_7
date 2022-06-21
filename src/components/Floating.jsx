@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { M_PointBtn } from "../elem/Button";
+import {comma} from '../shared/common';
 
-
-const Floating = () => {
+const Floating = ({charge, Dday}) => {
 	return(
 		<FloatingBx>
 			<div>
 				<div>
-					<span className="txt_m">30,000,000원</span> <span className="txt_s">/ 박</span>
-					<div>6월 19일 ~ 24일</div>
+					<span className="txt_m"> {comma(charge)}원</span> <span className="txt_s">/ 박</span>
+					<div>{Dday}</div>
 				</div>
 				<M_PointBtn scolor="#471868" ecolor="#38157D" background="#C4C4C4" color="#fff" type="submit">등록하기</M_PointBtn>
 			</div>
@@ -19,8 +19,6 @@ const Floating = () => {
 
 const FloatingBx = styled.div`
 	width: 100%;
-	max-width: 425px;
-	margin: 0 auto;
 	padding: 0 20px;
 	background-color: #fff;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3); 
@@ -32,7 +30,9 @@ const FloatingBx = styled.div`
 		font-size: 18px;
 	}
 	>div {
-		padding: 10px 0;
+		max-width: 425px;
+		margin: 0 auto;
+		padding: 10px;
 		box-sizing: border-box;
 		margin: 0 auto;
 		display: flex;
