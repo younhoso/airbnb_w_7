@@ -135,7 +135,7 @@ function SignUp() {
                 <label htmlFor="id" >
                     <p className="required">이메일(ID)</p>
                     <Input width="343px" height="52px" id="id" theme={{ borderColor: "#C4C4C4" }} type="email" required children="아이디(이메일)" onChange={idCheck} />
-                    <div style={{ position: "relative", top: "-38px", right: "60px", width: "343px", textAlign: "end" }}>
+                    <div style={{ position: "relative", top: "-38px", right: "76px", width: "343px", textAlign: "end" }}>
                         <SmallButton style={{ background: "black", color: "white", position: "absolute" }} onClick={idDupCheck}>중복확인</SmallButton>
                     </div>
                 </label>

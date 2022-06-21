@@ -7,6 +7,7 @@ import thunk from 'redux-thunk';
 import lodgment from './lodgment';
 import user from './user';
 import comment from './comment';
+import post from './post';
 
 // redux router
 import { createBrowserHistory } from 'history';
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
 	user,
 	lodgment,
 	comment,
+	post,
 	router: connectRouter(history),
 });
 

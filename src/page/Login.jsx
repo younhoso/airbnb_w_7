@@ -4,9 +4,11 @@ import Input from '../elem/Input';
 import { LargeButton } from '../elem/Button'
 import { useDispatch } from "react-redux";
 import { loginDB } from "../modules/user";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -33,7 +35,7 @@ const Login = () => {
         </div>
         <LargeButton onClick={handleLogin}>Log In</LargeButton>
         <LoginZoneText>계정이 없으신가요?</LoginZoneText>
-        <LargeButton>Sign Up</LargeButton>
+        <LargeButton onClick={() => history.push("/signup")}>Sign Up</LargeButton>
       </FormSection>
     </AccountSection >
   )

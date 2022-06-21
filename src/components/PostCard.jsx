@@ -6,7 +6,8 @@ import "slick-carousel/slick/slick-theme.css"
 
 import Summer from '../assets/images/summer.png'
 
-function PostCard() {
+function PostCard({ post }) {
+
   const settings = {
     dots: true,
     arrows: true,
@@ -16,24 +17,50 @@ function PostCard() {
     slidesToScroll: 1,
   };
   return (
-    <div>
+    <Container>
       <Card>
         <ImgSlider>
-          <Slider {...settings}>
-            <CardImg src={Summer} />
-            <CardImg src={Summer} />
-            <CardImg src={Summer} />
+          <Slider {...settings} >
+            {post.photos.map((p, i) => {
+              return (
+                <CardImg src={p} key={i} />
+              )
+            })
+            }
           </Slider>
         </ImgSlider>
         <div className="content-text">
-          <CardTitle>양평 스마일카라반펜션</CardTitle>
-          <ReservText>6월 23~30 (최근 예약 가능한 날짜)</ReservText>
+          <CardTitle>{post.accName}</CardTitle>
+          {post.openAt.split("-")[1] === post.closeAt.split("-")[1] ?
+            <ReservText>
+              {post.openAt.split("-")[1].split("")[0] === "0" ? post.openAt.split("-")[1].split("")[1] : post.openAt.split("-")[1]}월
+              {post.openAt.split("-")[2].split("")[0] === "0" ? post.openAt.split("-")[2].split("",)[1] : post.openAt.split("-")[2].split("", 2)}일~
+              {post.closeAt.split("-")[2].split("")[0] === "0" ? post.closeAt.split("-")[2].split("",)[1] : post.closeAt.split("-")[2].split("", 2)}일
+              (최근 예약 가능한 날짜)
+            </ReservText> :
+            <ReservText>
+              {post.openAt.split("-")[1].split("")[0] === "0" ? post.openAt.split("-")[1].split("")[1] : post.openAt.split("-")[1]}월
+              {post.openAt.split("-")[2].split("")[0] === "0" ? post.openAt.split("-")[2].split("",)[1] : post.openAt.split("-")[2].split("", 2)}일~
+              {post.closeAt.split("-")[1].split("")[0] === "0" ? post.closeAt.split("-")[1].split("")[1] : post.closeAt.split("-")[1]}월
+              {post.closeAt.split("-")[2].split("")[0] === "0" ? post.closeAt.split("-")[2].split("")[1] : post.closeAt.split("-")[2].split("", 2)}일
+              (최근 예약 가능한 날짜)
+            </ReservText>
+          }
         </div>
-        <ChargeText>79,000 / 박</ChargeText>
+        <ChargeText>{post.charge} / 박</ChargeText>
       </Card>
-    </div>
+    </Container>
   )
 }
+
+const Container = styled.div`
+  &:first-child {
+    margin-top: 100px;
+  }
+  &:nth-last-child(2) {
+    margin-bottom: 80px;
+  }
+`
 
 const Card = styled.article`
   width: 347px;
@@ -42,9 +69,6 @@ const Card = styled.article`
   border-radius: 8px;
   margin: 0 auto;
   margin-bottom: 20px;
-  &:first-child{
-	margin-top: 100px;
-  }
   .content-text {
 	padding: 8px 8px 0;
 	margin-bottom:10px;
