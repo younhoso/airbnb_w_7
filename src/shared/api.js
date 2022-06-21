@@ -1,17 +1,28 @@
 import axios from "axios";
+import { localStorageGet } from "./common";
 
 const api = axios.create({
 	baseURL: "http://3.34.42.87",
 	headers: {
-		'content-type': 'application/json;charset=UTF-8',
+		'Content-type': 'application/json;charset=UTF-8',
 		accept: 'application/json,',
 	},
 });
 
-api.interceptors.request.use(function (config) {
-	const accessToken = document.cookie.split('=')[1];
-	config.headers.common['X-AUTH-TOKEN'] = `${accessToken}`;
+api.interceptors.request.use((config)=> {
+	config.headers['authorization'] = "Bearer"+localStorage.getItem('token');
+	console.log(config)
 	return config;
+},(err) => {
+	return Promise.reject(err);
+});
+
+api.interceptors.response.use((res) => {
+	console.log(res)
+	return res;
+}, (err) => {
+	console.log(err)
+	return Promise.reject(err)
 });
 
 export const apis = {
@@ -29,7 +40,7 @@ export const apis = {
 	// post
 	get: (postList) => api.get('/api/accommodations/', postList),
 	add: (contents) => api.post('/api/accommodations', contents),
-	edit: (id, contents) => api.put(`api/${id}`, contents),
+	edit: (id, contents) => api.put(`/api/${id}`, contents),
 	del: (id) => api.delete(`/api/${id}`),
 	lookups: () => api.get('/accommodation'),
 	lookup: (id) => api.get(`/api/accommodations/${id}`),
