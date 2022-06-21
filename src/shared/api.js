@@ -1,6 +1,10 @@
 import axios from "axios";
 
 const api = axios.create({
+<<<<<<< HEAD
+	// baseURL: "http://localhost:5001",
+=======
+>>>>>>> 3cc811e1f78e27c379bd23e4f3d4851411b1aafe
 	baseURL: "http://3.34.42.87",
 	headers: {
 		'content-type': 'application/json;charset=UTF-8',
@@ -25,6 +29,9 @@ export const apis = {
 	}),
 	dupcheck: (userId) => api.post('/api/users/dup_userId', { userId }),
 	login: (userId, password) => api.post('/api/users/login', { userId, password }),
+
+	// post
+	get: (postList) => api.get('/api/accommodations/', postList),
 	add: (contents) => api.post('/api/accommodations', contents),
 	edit: (id, contents) => api.put(`api/${id}`, contents),
 	del: (id) => api.delete(`/api/${id}`),

@@ -1,19 +1,71 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
 import Nav from "../components/Nav";
 import BottomNav from "../components/BottomNav";
 import PostCard from "../components/PostCard";
 
+import { apis } from "../shared/api"
+import { getpostDB } from "../modules/post";
+import { useDispatch, useSelector } from "react-redux";
+
+//icons
+import Beach from "../assets/images/Beach.png"
+import Surfing from "../assets/images/surfing.png"
+import Camp from "../assets/images/campsite.png"
+import Log from "../assets/images/log.png"
+import Share from "../assets/images/share-house.png"
+
 const Home = () => {
+	const dispatch = useDispatch()
+	const postList = useSelector((state) => state.post.list.accommodations)
+	const isLogin = localStorage.getItem("token")
+	console.log(postList)
+
+	const categories = [
+		{ id: "서핑", url: Surfing },
+		{ id: "해변근처", url: Beach },
+		{ id: "캠핑장", url: Camp },
+		{ id: "통나무집", url: Log },
+		{ id: "셰어하우스", url: Share },
+	]
+	const [activeCate, setActiveCate] = useState(0);
+
+
+
+	useEffect(() => {
+		dispatch(getpostDB())
+	}, [])
+
+	// const handleCategory = (i) => {
+	// 	dispatch(getpostDB())
+	// }
+
 	return (
 		<Section>
-			<Nav />
-			<Main>
-				<PostCard />
-				<div className="btn-wrap">
-					<Link to="/write"><AddBtn><i className="ic-plus"></i></AddBtn></Link>
+			<NavSection>
+				<div className='icon-box'>
+					{
+						categories.map((c, i) => {
+							return (
+								<button onClick={() => { dispatch(getpostDB(c.id)) }} key={i}>
+									{<Img src={c.url} alt="" />}
+									<p>{c.id}</p>
+								</button>
+							)
+						})
+					}
 				</div>
+			</NavSection>
+			<Main>
+				{postList &&
+					postList.map((post, i) => {
+						return <PostCard post={post} key={i} />
+					})
+				}
+				{isLogin ? <div className="btn-wrap">
+					<Link to="/write"><AddBtn><i className="ic-plus"></i></AddBtn></Link>
+				</div> : null}
 			</Main>
 			<BottomNav />
 		</Section>
@@ -22,8 +74,8 @@ const Home = () => {
 
 const Section = styled.div`
 	width: 100%;
-	height: 100vh;
 	display: flex;
+	min-height: 950px;
 	flex-direction: column;
 	align-items:center;
 	div {
@@ -33,8 +85,7 @@ const Section = styled.div`
 const Main = styled.div`
     width: 375px;
 	max-width: 425px;
-	/* width: 100%; */
-	height: 100vh;
+	min-height: 950px;
 	.btn-wrap {
 		position: fixed;
         width: 375px;
@@ -44,6 +95,42 @@ const Main = styled.div`
         justify-content: flex-end;
 		padding-right: 6px;
 	}
+`
+
+const NavSection = styled.nav`
+    position: fixed;
+	top:0;
+	width: 100%;
+	padding: 10px;
+	padding-left: 20px;
+	box-sizing: border-box;
+	background-color: white;
+	box-shadow: rgb(0 0 0 / 15%) 0 2px 3px -2px;
+	z-index: 2;
+	/* border: 1px solid red; */
+	/* box-shadow: 0 2px 3px -2px rgba(0,0,0,.2); */
+    .icon-box {
+        width: 375px;
+        display: flex;
+        justify-content: space-between;
+        margin: auto;
+        button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            p {
+                font-size: 12px;
+                font-weight: bold;
+                margin-top: 10px;
+            }
+        }
+    }
+`
+
+
+const Img = styled.img`
+	width: 30px;
+	height: 30px;
 `
 
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import styled from "styled-components";
 import Beach from "../assets/images/Beach.png"
@@ -8,30 +8,29 @@ import Log from "../assets/images/log.png"
 import Share from "../assets/images/share-house.png"
 
 function Nav() {
+
+    const [data, setData] = useState([
+        { id: "서핑", url: Surfing },
+        { id: "해변근처", url: Beach },
+        { id: "캠핑장", url: Camp },
+        { id: "통나무집", url: Log },
+        { id: "셰어하우스", url: Share },
+    ])
+
     return (
         <div>
             <NavSection>
                 <div className='icon-box'>
-                    <button>
-                        <Img src={Surfing} alt="" />
-                        <p>서핑</p>
-                    </button>
-                    <button>
-                        <Img src={Beach} alt="" />
-                        <p>해변근처</p>
-                    </button>
-                    <button>
-                        <Img src={Camp} alt="" />
-                        <p>캠핑장</p>
-                    </button>
-                    <button>
-                        <Img src={Log} alt="" />
-                        <p>통나무집</p>
-                    </button>
-                    <button>
-                        <Img src={Share} alt="" />
-                        <p>셰어하우스</p>
-                    </button>
+                    {
+                        data.map((c, i) => {
+                            return (
+                                <button >
+                                    {<Img src={c.url} alt="" />}
+                                    <p>{c.id}</p>
+                                </button>
+                            )
+                        })
+                    }
                 </div>
             </NavSection>
         </div>

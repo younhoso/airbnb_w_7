@@ -24,7 +24,8 @@ export const signupDB = (userId, password, passwordCheck, name, birth, gender) =
             .then((res) => {
                 console.log(res)
                 window.alert(res.data.message)
-                history.push("/login")
+                // history.push("/login")
+                window.location.assign("/login")
             })
             .catch((error) => {
                 console.log(error)
@@ -43,7 +44,7 @@ export const idcheckDB = (userId) => {
             })
             .catch((error) => {
                 console.log(error)
-                window.alert(error.data.errorMessage)
+                window.alert(error.response.data.errorMessage)
             })
     }
 }
@@ -56,12 +57,16 @@ export const loginDB = (userId, password) => {
                 console.log("로그인정보", res)
                 localStorage.setItem("token", res.data.token);
                 dispatch(loginUser({ userId, password }))
+                window.alert("환영합니다:)")
+                window.location.assign("/")
             })
             .catch((error) => {
                 console.log("로그인에러", error)
+                window.alert(error.response.data.errorMessage)
             })
     }
 }
+
 
 //로그아웃
 export const logoutDB = () => {
