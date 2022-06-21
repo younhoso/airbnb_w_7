@@ -1,55 +1,50 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from "styled-components";
-import Star from '../elem/Star';
-import { commentsGet } from '../modules/comment';
+import Rating from '../elem/Rating';
 
-const CommentList = () => {
-	const dispatch = useDispatch();
-	const {reviews} = useSelector((state) => state.comment.comments)
-	console.log(reviews)
-		
+const CommentList = ({item}) => {
+	console.log(item)
 	return(
 		<CommentListBx> 
-			{reviews && (
-				<ul className="img_inner">
-					{reviews.map((el, idx) => {
-						return(
-							<li key={idx} className="item">
-								<div>test@example.com</div>
-								<Star value={el.stars}></Star>
-								<div>2022/04/11</div>
-								{ el.photos.map((el, idx) => {
-									return(
-										<div key={idx} className="img_item">
-											<img src={el} />
-										</div>
-									)
-								})
-								}
-								<div>{el.content}</div>
-							</li>
-						)
-					})}
-				</ul>
-			)}
+				<div className="img_wrap">
+					<div className="item">
+						<div>test@example.com</div>
+						<div>2022/04/11</div>
+						<div className='img_inner'>
+							{item.photos.map((el, idx) => {
+								return(
+									<div key={idx} className="img_item">
+										<img src={el} alt="댓글 섬네일"/>
+									</div>
+								)
+							})}
+						</div>
+						<Rating value={item.stars}/>
+						<p>{item.content}</p>
+						<div></div>
+					</div>
+				</div>
 		</CommentListBx>
 	)
 }
 
-const CommentListBx = styled.div`
+const CommentListBx = styled.li`
 	max-width: 425px;
 	margin: 0 auto;
-	.img_inner {
+	.img_wrap {
 		white-space: nowrap;
 		overflow-x: auto;
-		li {
-				width: 100%;
+		.img_inner {
+			overflow-x: auto;
 				.img_item {
 					width: 90px;
-					overflow-x: auto;
 					white-space: nowrap;
 					display: inline-block;
+					margin-left: 10px;
+				}
+				.img_item:nth-child(1) {
+					margin-left: 0;
 				}
 			}
 	}

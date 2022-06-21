@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import styled from "styled-components";
 import Text from "../elem/Text";
 
-const AroundInfo = () => {
+const AroundInfo = ({name, tit, txt, value, onChange}) => {
 	const [isActive, setActive] = useState("false");
 
 	const hanleDropDownBox = (e) => {
@@ -12,11 +12,11 @@ const AroundInfo = () => {
 	return(
 		<AroundInfoBx>
 			<div className="boxInner" onClick={hanleDropDownBox}>
-				<h2>주변정보</h2>
+				<h2>{tit}</h2>
 				<i className={`ic-arrow-top ${isActive ? "on" : "off"}`}></i>
 			</div>
 			<ContensInner height="140px" className={`contents ${isActive ? "on" : "off"}`}>
-				<Text>숙소 주변 정보를 입력해 주세요.(최대 1,000자)</Text>
+				<Text name={name} value={value} onChange={onChange}>{txt}</Text>
 			</ContensInner>
 		</AroundInfoBx>
 	)

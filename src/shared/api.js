@@ -1,7 +1,10 @@
 import axios from "axios";
 
 const api = axios.create({
+<<<<<<< HEAD
 	// baseURL: "http://localhost:5001",
+=======
+>>>>>>> 3cc811e1f78e27c379bd23e4f3d4851411b1aafe
 	baseURL: "http://3.34.42.87",
 	headers: {
 		'content-type': 'application/json;charset=UTF-8',
@@ -31,14 +34,20 @@ export const apis = {
 	get: (postList) => api.get('/api/accommodations/', postList),
 	add: (contents) => api.post('/api/accommodations', contents),
 	edit: (id, contents) => api.put(`api/${id}`, contents),
-	del: (id) => api.delete(`api/${id}`),
+	del: (id) => api.delete(`/api/${id}`),
 	lookups: () => api.get('/accommodation'),
-	lookup: (id) => api.get(`/accommodation/${id}`),
+	lookup: (id) => api.get(`/api/accommodations/${id}`),
 	search: (value) => api.get(`/api/${value}`),
 
 	// comment
 	addComment: (id, content) => api.post(`/api/${id}`, { content }),
-	comments: (id) => api.get(`/reviews/${id}`),
+	comments: (id) => api.get(`/api/reviews/${id}`),
 	editComment: (id, content) => api.put(`/api/${id}`, { content }),
 	delComment: (id) => api.delete(`/api/${id}`),
+	
+	// images
+	addImages : function (content){ 
+		console.log(content)
+		return api.post(`/api/images`, content)
+	}
 }
