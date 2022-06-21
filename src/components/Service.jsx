@@ -244,8 +244,7 @@ const ServiceInner = styled.div`
 			background-color: #C4C4C4;
 		}
 		input[type=checkbox]:checked + label {
-			background: rgb(255,56,92);
-			background: linear-gradient(90deg, rgba(255,56,92,0.7) 0%, rgba(255,56,92,1) 100%);
+			background: #000;
 		}
 		input[type=checkbox]{
 			display: none;

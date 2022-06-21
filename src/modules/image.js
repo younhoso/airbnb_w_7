@@ -1,34 +1,43 @@
-import { createAction, handleActions } from 'redux-actions';
-import produce from 'immer';
+// import { createAction, handleActions } from 'redux-actions';
+// import produce from 'immer';
+// import { apis } from '../shared/api';
 
-const PREVIEW = 'image/PREVIEW';
-const UPLOAD = 'image/UPLOAD';
+// const PREVIEW = 'image/PREVIEW';
+// const UPLOAD = 'image/UPLOAD';
 
-const setPreview = createAction(PREVIEW, (preview) => ({ preview }));
-const imageUpload = createAction(UPLOAD, (imageUrl) => ({ imageUrl }));
+// const setPreview = createAction(PREVIEW, (preview) => ({preview}));
+// const imageUpload = createAction(UPLOAD, (imageUrl) => ({imageUrl}));
 
-const initialState = {
-	imageUrl: null,
-	preview: null,
-};
+// // Thunk function
+// export const imageAdd = (content) => {
+// 	console.log(content)
+// 	return function (dispatch, getState, { history }) {
+// 		apis
+// 			.addImages(content)
+// 			.then(() => {
+// 				dispatch(imageUpload(content));
+// 				history.push('/');
+// 			})
+// 			.catch((err) => {
+// 				window.alert('로그인한 회원만 작성할 수 있습니다!');
+// 			});
+// 	};
+// };
 
-export default handleActions(
-	{
-		[UPLOAD]: (state, action) =>
-			produce(state, (draft) => {
-				draft.imageUrl = action.payload.imageUrl;
-			}),
-		[PREVIEW]: (state, action) =>
-			produce(state, (draft) => {
-				draft.preview = action.payload.preview;
-			}),
-	},
-	initialState,
-);
+// const initialState = {
+// 	imageUrl: null,
+// 	preview: null,
+// }
 
-const imageCreators = {
-	setPreview,
-	imageUpload,
-};
-
-export { imageCreators };
+// // reducer
+// export default handleActions({
+// 	[UPLOAD]: (state, action) =>
+// 		produce(state, (draft) => {
+// 			draft.imageUrl = action.payload.imageUrl;
+// 		}),
+// 	[PREVIEW]: (state, action) =>
+// 		produce(state, (draft) => {
+// 			draft.preview = action.payload.preview;
+// 		}),
+// 	initialState,
+// })

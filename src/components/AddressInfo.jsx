@@ -1,34 +1,10 @@
 import React,{useState} from "react";
 import styled from "styled-components";
-import { useDaumPostcodePopup } from 'react-daum-postcode';
 import Input from "../elem/Input";
 import {MediunButton} from "../elem/Button"
 
-const AddressInfo = () => {
+const AddressInfo = ({name, address, zonecode, detailAddress, handlePost, onChange}) => {
 	const [isActive, setActive] = useState("false");
-	const open = useDaumPostcodePopup("https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js");
-
-	const handleComplete = (data) => {
-    let fullAddress = data.address;
-    let extraAddress = '';
-
-    if (data.addressType === 'R') {
-      if (data.bname !== '') {
-        extraAddress += data.bname;
-      }
-      if (data.buildingName !== '') {
-        extraAddress += extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
-      }
-      fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
-    }
-		console.log(data);
-    // console.log(fullAddress);
-		// console.log(extraAddress);
-  };
-
-	const handleClick = () => {
-    open({ onComplete: handleComplete });
-  };
 
 	const hanleDropDownBox = (e) => {
 		setActive(!isActive);
@@ -42,14 +18,14 @@ const AddressInfo = () => {
 			</div>
 			<ContensInner height="180px" className={`contents ${isActive ? "on" : "off"}`}>
 				<div className="number box">
-					<Input height="40px" theme={{borderColor: "#C4C4C4"}} />
-					<MediunButton width="78px" theme={{ fontColor: "#000000", bgColor: "#F4F4F4" }} onClick={handleClick}>우편번호</MediunButton>
+					<Input height="40px" defaultValue={zonecode} theme={{borderColor: "#C4C4C4"}} />
+					<a href="#0" className="postLink" onClick={handlePost}>우편번호</a>
 				</div>
 				<div className="box">
-					<Input width="100%" height="40px" theme={{borderColor: "#C4C4C4"}}>주소</Input>
+					<Input width="100%" height="40px" defaultValue={address} theme={{borderColor: "#C4C4C4"}}>주소</Input>
 				</div>
 				<div className="box">
-					<Input width="100%" height="40px" theme={{borderColor: "#C4C4C4"}}>상세주소</Input>
+					<Input width="100%" height="40px" name="detailAddress" onChange={onChange} defaultValue={detailAddress} theme={{borderColor: "#C4C4C4"}}>상세주소</Input>
 				</div>
 			</ContensInner>
 
@@ -102,6 +78,18 @@ const ContensInner = styled.div`
 	}
 	.box {
 		margin: 8px 0;
+	}
+	.postLink {
+		width: 78px;
+    height: 37px;
+		line-height: 37px;
+		text-align: center;
+    font-size: 12px;
+		font-weight: 600;
+		display: inline-block;
+    background-color: #F4F4F4;
+    color: #000000;
+    border-radius: 6px;
 	}
 `
 

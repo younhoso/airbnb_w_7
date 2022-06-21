@@ -39,5 +39,8 @@ export const apis = {
 	delComment: (id) => api.delete(`/api/${id}`),
 	
 	// images
-	addImages : () => api.post(`/api/images`)
+	addImages : function (content){ 
+		console.log(content)
+		return api.post(`/api/images`, content)
+	}
 }

@@ -1,52 +1,43 @@
 import React,{useState} from "react";
+import DatePicker from "react-datepicker";
 import styled from "styled-components";
-import Calendar from "react-calendar";
-import 'react-calendar/dist/Calendar.css';
+import "react-datepicker/dist/react-datepicker.css";
+import { ko } from "date-fns/esm/locale";
 
-const Calender = () => {
-	const [value, onChange] = useState([new Date(), new Date()]);
-	const [startDate, setStartDate] = useState(new Date());
+
+const Calender = ({startDate, endDate, onchange}) => {
 	const [isActive, setActive] = useState("false");
+	const [Dday, setDday] = useState("");
 
 	const hanleDropDownBox = (e) => {
 		setActive(!isActive);
 	}
-	const changeDate = (e) => {
-    setStartDate(e)
-  }
+	
 	return(
-		<CalenderBx>
+		<CalenderBx className="CalenderBx">
 			<div className="boxInner" onClick={hanleDropDownBox}>
-				<h2>켈린더 입력</h2>
-				<i className={`ic-arrow-top ${isActive ? "on" : "off"}`}></i>
+				<h2>숙소를 등록할 날짜를 선택해주세요.</h2>
 			</div>
 			<CalenderInner height="580px" className={`contents ${isActive ? "on" : "off"}`}>
-				{/* 켈린더 라이브러리 연결할 곳 */}
-				<Calendar  value={value} onChange={changeDate}/>
-
+				<p>{Dday}</p>
+				<DatePicker
+					onChange={onchange}
+					startDate={startDate}
+					endDate={endDate}
+					selectsRange
+					minDate={new Date()}
+					locale={ko}
+					inline/>
 			</CalenderInner>
 		</CalenderBx>
 	)
 };
 
 const CalenderBx = styled.div`
-	width: 100%;
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
-	margin-bottom: 20px;
-	border-radius: 0.8em;
-	padding: 0 20px;
 	.boxInner {
 		display: flex;
     justify-content: space-between;
 		align-items: center;
-		i {
-			font-size: 24px;
-			padding: 10px;
-			transition: transform .25s ease-in-out;
-		}
-		i.off {
-			transform:rotate(180deg)
-		}
 	}
 	.contents.off {
 		max-height: 0;
@@ -57,7 +48,7 @@ const CalenderBx = styled.div`
 	h2 {
 		font-size: 18px;
 		font-weight: 600;
-		padding: 10px;
+		padding: 10px 0;
 	}
 `
 const CalenderInner = styled.div`
@@ -65,10 +56,51 @@ const CalenderInner = styled.div`
 	-webkit-transition: max-height 0.2s ease-in-out;
 	transition: max-height 0.2s ease-in-out;
 	overflow: hidden;
-	padding: 0 20px;
-	box-sizing: border-box;
-	.react-calendar {
-		border: 1px solid transparent;
+	
+	.react-datepicker {
+		width: 100%;
+		.react-datepicker__header {
+			background-color: #fff;
+		}
+		.react-datepicker__month-container {
+			width: 100%;
+		}
+		.react-datepicker__day--in-range {
+			background: rgb(239 239 239);
+			border-radius: 0;
+			color: #000;
+		}
+		.react-datepicker__day {
+			border-radius: 100%;
+			border: 1.5px solid transparent;
+		}
+		.react-datepicker__day--range-start {
+			background: #000;
+			color: #fff;
+		}
+		.react-datepicker__day--range-end {
+			background: #000;
+			color: #fff;
+		}
+		.react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range), .react-datepicker__month-text--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range), .react-datepicker__quarter-text--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range), .react-datepicker__year-text--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range){
+			background: #000
+		}
+		.react-datepicker__day--keyboard-selected, .react-datepicker__month-text--keyboard-selected, .react-datepicker__quarter-text--keyboard-selected, .react-datepicker__year-text--keyboard-selected{
+			background: #000
+		}
+		.react-datepicker__day:hover, .react-datepicker__month-text:hover, .react-datepicker__quarter-text:hover, .react-datepicker__year-text:hover {
+			color: #000;
+			background: rgb(255, 255, 255) !important;
+    	border: 1.5px solid rgb(34, 34, 34) !important;
+		}
+		.react-datepicker__day--in-selecting-range {
+			color: #000;
+			background: #eee !important;
+		}
+		.react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+			width: 1.9rem;
+			height: 1.9rem;
+		}
 	}
 `
 
