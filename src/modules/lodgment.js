@@ -21,20 +21,14 @@ const searchLodgment = createAction(SEARCH, (lodgments) => ({ lodgments }));
 
 // Thunk function
 // 데이터 서버로 전송
-export const lodgmentAdd = (content) => {
-	console.log(content)
-	return function (dispatch, getState, { history }) {
-		apis
-			.add(content)
-			.then(() => {
-				dispatch(addLodgment(content));
-				history.push('/');
-			})
-			.catch((err) => {
-				window.alert('로그인한 회원만 작성할 수 있습니다!');
-			});
+export const lodgmentAdd = (content) => 
+	async (dispatch, getState, { history }) => {
+		await apis
+		.add(content)
+		.then((data) => {
+			dispatch(addLodgment(content));
+		})
 	};
-};
 
 // 해당 id의 데이터를 서버에 전송(수정).
 export const lodgmentEdit = (id, newLodgment) =>

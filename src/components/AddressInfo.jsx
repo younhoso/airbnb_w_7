@@ -19,7 +19,7 @@ const AddressInfo = ({name, address, zonecode, detailAddress, handlePost, onChan
 			<ContensInner height="180px" className={`contents ${isActive ? "on" : "off"}`}>
 				<div className="number box">
 					<Input height="40px" defaultValue={zonecode} theme={{borderColor: "#C4C4C4"}} />
-					<a href="#0" className="postLink" onClick={handlePost}>우편번호</a>
+					<a className="postLink" onClick={handlePost}>우편번호</a>
 				</div>
 				<div className="box">
 					<Input width="100%" height="40px" defaultValue={address} theme={{borderColor: "#C4C4C4"}}>주소</Input>

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { localStorageGet } from "./common";
 
 const api = axios.create({
 	baseURL: "http://3.34.42.87",
@@ -10,8 +9,7 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config)=> {
-	config.headers['authorization'] = "Bearer"+localStorage.getItem('token');
-	console.log(config)
+	config.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
 	return config;
 },(err) => {
 	return Promise.reject(err);
@@ -19,9 +17,11 @@ api.interceptors.request.use((config)=> {
 
 api.interceptors.response.use((res) => {
 	console.log(res)
+	alert(res.data.message);
+	window.location.replace('/');
 	return res;
 }, (err) => {
-	console.log(err)
+	alert(err.response.data.errorMessage)
 	return Promise.reject(err)
 });
 
@@ -38,7 +38,7 @@ export const apis = {
 	login: (userId, password) => api.post('/api/users/login', { userId, password }),
 
 	// post
-	get: (postList) => api.get('/api/accommodations/', postList),
+	get: (postList) => api.get('/api/accommodations', postList),
 	add: (contents) => api.post('/api/accommodations', contents),
 	edit: (id, contents) => api.put(`/api/${id}`, contents),
 	del: (id) => api.delete(`/api/${id}`),
@@ -53,8 +53,8 @@ export const apis = {
 	delComment: (id) => api.delete(`/api/${id}`),
 	
 	// images
-	addImages : function (content){ 
-		console.log(content)
-		return api.post(`/api/images`, content)
-	}
+	// addImages : function (contents){ 
+	// 	console.log(contents)
+	// 	return api.post(`/api/images`, contents)
+	// }
 }
