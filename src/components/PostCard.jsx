@@ -3,10 +3,10 @@ import styled from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"
-
-import Summer from '../assets/images/summer.png'
+import { useHistory } from 'react-router-dom';
 
 function PostCard({ post }) {
+  const history = useHistory();
 
   const settings = {
     dots: true,
@@ -18,7 +18,7 @@ function PostCard({ post }) {
   };
   return (
     <Container>
-      <Card>
+      <Card onClick={() => history.replace(`/detail/${post.accId}`)}>
         <ImgSlider>
           <Slider {...settings} >
             {post.photos.map((p, i) => {
@@ -57,9 +57,6 @@ const Container = styled.div`
   &:first-child {
     margin-top: 100px;
   }
-  &:nth-last-child(2) {
-    margin-bottom: 80px;
-  }
 `
 
 const Card = styled.article`
@@ -69,6 +66,7 @@ const Card = styled.article`
   border-radius: 8px;
   margin: 0 auto;
   margin-bottom: 20px;
+  cursor:pointer;
   .content-text {
 	padding: 8px 8px 0;
 	margin-bottom:10px;

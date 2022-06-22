@@ -17,7 +17,6 @@ function BottomNav() {
     }
 
 
-
     return (
         <div>
             <BottomNavSection>

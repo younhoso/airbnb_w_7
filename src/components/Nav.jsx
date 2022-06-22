@@ -47,10 +47,8 @@ const NavSection = styled.nav`
 	background-color: white;
 	box-shadow: rgb(0 0 0 / 15%) 0 2px 3px -2px;
 	z-index: 2;
-	/* border: 1px solid red; */
-	/* box-shadow: 0 2px 3px -2px rgba(0,0,0,.2); */
     .icon-box {
-        width: 375px;
+        width: 342px;
         display: flex;
         justify-content: space-between;
         margin: auto;
