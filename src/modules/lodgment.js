@@ -23,11 +23,9 @@ const searchLodgment = createAction(SEARCH, (lodgments) => ({ lodgments }));
 // 데이터 서버로 전송
 export const lodgmentAdd = (content) => {
 	return function (dispatch, getState, { history }) {
-			console.log(content)
 			apis
 			.add(content)
-			.then((data) => {
-				console.log(data)
+			.then(() => {
 				dispatch(addLodgment(content));
 				history.replace('/');
 			})
@@ -93,19 +91,8 @@ export const lodgmentDel = (id) =>
 
 // initialState
 const initialState = {
-	photos: [],
-	category: '',
-  accName: '',
-	openAt: '',
-	closeAt: '',
-	address: '',
-  desc1_hanmadi: '',
-	desc2_surroundings: '',
-	desc3_notice: '',
-	desc4_basics: '',
-	facilities: [],
-	charge: 0,
-  rating: 0,
+	list: [],
+	lodgment: null,
 }
 
 // reducer

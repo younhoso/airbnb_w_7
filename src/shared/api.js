@@ -11,7 +11,7 @@ const api = axios.create({
 api.interceptors.request.use((config)=> {
 	config.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
 	return config;
-},(err) => {
+}, (err) => {
 	return Promise.reject(err);
 });
 
@@ -37,9 +37,8 @@ export const apis = {
 	search: (value) => api.get(`/api/${value}`),
 
 	// comment
-	addComment: (id, content) => api.post(`/api/${id}`, { content }),
+	addComment: (id, content) => api.post(`/api/reviews/${id}`, content),
 	comments: (id) => api.get(`/api/reviews/${id}`),
 	editComment: (id, content) => api.put(`/api/${id}`, { content }),
 	delComment: (id) => api.delete(`/api/${id}`),
-	
 }

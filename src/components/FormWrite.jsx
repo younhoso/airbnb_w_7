@@ -43,7 +43,7 @@ const FormWrite = () => {
     setValues(function(prevValues){
 			return {
       	...prevValues,
-      	[name]: value,
+      	[name]: value
 			}
     });
   };
@@ -131,7 +131,7 @@ const FormWrite = () => {
 		const resOptions = {
 			data: values
 		};
-		console.log(resOptions.data)
+
 		dispatch(lodgmentAdd(resOptions.data))
   };
 
@@ -142,7 +142,7 @@ const FormWrite = () => {
 			<div className="image_box"><ImageRegist onChange={setValues}/></div>
 			<div className="input_box"><Select onChange={handleSelect} /></div>
 			<div className="input_box"><Input width="100%" height="52px" id="id" theme={{ borderColor: "#C4C4C4" }} onChange={handleInputChange} name="charge" value={values.charge}>1박 기준으로 금액을 입력해주세요.</Input></div>
-			<div className="input_box"><Input width="100%" height="52px" id="id" theme={{ borderColor: "#C4C4C4" }} onChange={handleInputChange} name="accName" value={values.title}>숙소명을 입력해 주세요.(최대 30자)</Input></div>
+			<div className="input_box"><Input width="100%" height="52px" id="id" theme={{ borderColor: "#C4C4C4" }} onChange={handleInputChange} name="accName" value={values.accName}>숙소명을 입력해 주세요.(최대 30자)</Input></div>
 			<div className="input_box"><Text className="txtBx" onChange={handleInputChange} name="desc1_hanmadi" value={values.desc1_hanmadi}>사장님 한마디 해주세요.(최대 1,000자)</Text></div>
 			<Calender startDate={startDate} endDate={endDate} onchange={changeCalender}/>
 			<AddressInfo address={values.address} detailAddress={values.detailAddress} zonecode={values.zonecode} onChange={handleInputChange} handlePost={handlePost}/>

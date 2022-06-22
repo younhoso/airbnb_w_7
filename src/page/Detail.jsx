@@ -3,36 +3,22 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { SmallButton } from "../elem/Button";
 import { lodgmentGetId } from "../modules/lodgment";
-import { commentsGet } from "../modules/comment";
+import { __commentsGet } from "../modules/comment";
 import CommentWrite from "../components/CommentWrite";
 import CommentList from "../components/CommentList";
 
 const Detail = ({ history, match }) => {
 	const dispatch = useDispatch();
 	const lodgment = useSelector((store) => store.lodgment.lodgment)
-	const comment = useSelector((store) => store.comment.comments.review)
-	// console.log(lodgment)
-	// console.log(comment)
+	const comment = useSelector((store) => store.comment.comments)
+	const [items, setItems] = useState([]);
 	const {params: { id }} = match;
-	const [values, setValues] = useState({
-		content: '',
-    imgFile: null,
-		rating: 0
-  });
-	
-	const handleChange = (name, value) => {
-    setValues(function(prevValues){
-			return {
-      	...prevValues,
-      	[name]: value,
-			}
-    });
-  };
-	
+
 	useEffect(() => {
+		setItems(comment)
 		dispatch(lodgmentGetId(id));
-		dispatch(commentsGet(id));
-	}, [id]);
+		dispatch(__commentsGet(id));
+	}, [dispatch]);
 
 	return(
 		<DetailBx>
@@ -68,16 +54,14 @@ const Detail = ({ history, match }) => {
 								<SmallButton background={"#F4F4F4"} color={"#000"} className="star-write"><i className="ic-star-write"></i>댓글쓰기</SmallButton>
 							</div>
 							<div className="comment_write">
-								<CommentWrite name="rating" values={values.rating} onChange={handleChange}/>
+								<CommentWrite/>
 							</div>
 							<ul>
 								{ comment && (
 									comment.map((el, idx) => {
 										return(
 											<CommentList key={idx} item={el}></CommentList>
-										)
-									})
-									)
+										)}))
 								}
 							</ul>
 						</div>
