@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
-import Nav from "../components/Nav";
 import BottomNav from "../components/BottomNav";
 import PostCard from "../components/PostCard";
 
@@ -15,11 +14,14 @@ import Surfing from "../assets/images/surfing.png"
 import Camp from "../assets/images/campsite.png"
 import Log from "../assets/images/log.png"
 import Share from "../assets/images/share-house.png"
+import { loginCheck } from "../modules/user";
 
 const Home = () => {
 	const dispatch = useDispatch()
 	const postList = useSelector((state) => state.post.list.accommodations)
 	const isLogin = localStorage.getItem("token")
+	const islogin = useSelector((state) => state.user.is_login)
+	console.log(islogin)
 	console.log(postList)
 
 	const categories = [
@@ -29,10 +31,10 @@ const Home = () => {
 		{ id: "통나무집", url: Log },
 		{ id: "셰어하우스", url: Share },
 	]
-	const [activeCate, setActiveCate] = useState(0);
 
 	useEffect(() => {
 		dispatch(getpostDB())
+		dispatch(loginCheck());
 	}, [dispatch])
 
 	return (
@@ -57,9 +59,9 @@ const Home = () => {
 						return <PostCard post={post} key={i} />
 					})
 				}
-				{isLogin ? <div className="btn-wrap">
+				{isLogin !== null && <div className="btn-wrap">
 					<Link to="/write"><AddBtn><i className="ic-plus"></i></AddBtn></Link>
-				</div> : null}
+				</div>}
 			</Main>
 			<BottomNav />
 		</Section>

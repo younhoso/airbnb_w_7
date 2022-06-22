@@ -40,6 +40,7 @@ function Nav() {
 const NavSection = styled.nav`
     position: fixed;
 	top:0;
+    left: 0;
 	width: 100%;
 	padding: 10px;
 	padding-left: 20px;

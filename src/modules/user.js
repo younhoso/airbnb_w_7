@@ -67,6 +67,15 @@ export const loginDB = (userId, password) => {
     }
 }
 
+export const loginCheck = () => {
+    return function (dispatch) {
+        const userToken = localStorage.getItem("token");
+        if (userToken) {
+            dispatch(loginUser({ userToken }));
+        }
+    };
+};
+
 
 //로그아웃
 export const logoutDB = () => {
@@ -84,6 +93,7 @@ export default handleActions(
         [LOGIN]: (state, action) =>
             produce(state, (draft) => {
                 draft.user = action.payload.user;
+                console.log(draft.user)
                 draft.is_login = true;
             }),
         [LOGOUT]: (state, action) =>
