@@ -27,7 +27,6 @@ const Detail = ({ history, match }) => {
 
 	return(
 		<DetailBx>
-			
 			{lodgment && (
 					<>
 						<div className="detail_tit">
