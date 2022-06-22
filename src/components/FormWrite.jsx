@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
 import ImageRegist from "../elem/ImageRegist";
 import Input from "../elem/Input";
@@ -15,14 +16,12 @@ import Service from "./Service";
 
 
 const INITIAL_VALUES = {
-  photos: [],
+	photos: [],
 	category: '',
   accName: '',
 	openAt: '',
 	closeAt: '',
 	address: '',
-	zonecode: '',
-	detailAddress: '',
   desc1_hanmadi: '',
 	desc2_surroundings: '',
 	desc3_notice: '',
@@ -132,22 +131,15 @@ const FormWrite = () => {
 		const resOptions = {
 			data: values
 		};
-
-		try {
-			dispatch(lodgmentAdd(resOptions.data))
-			return;
-    } catch (error) {
-
-      return;
-    } finally {
-
-    }
+		console.log(resOptions.data)
+		dispatch(lodgmentAdd(resOptions.data))
   };
 
 	return(
 		<ContainerForm onSubmit={handleSubmit}>
 			<h2 className="formwriteH2">숙소등록</h2>
-			<div className="image_box"><ImageRegist name="photos" imgFileValue={values.photos} onChange={handleChange}/></div>
+			<Link to="/"><div className="arrow_inner"><i className="ic-arrow-top"></i></div></Link>
+			<div className="image_box"><ImageRegist onChange={setValues}/></div>
 			<div className="input_box"><Select onChange={handleSelect} /></div>
 			<div className="input_box"><Input width="100%" height="52px" id="id" theme={{ borderColor: "#C4C4C4" }} onChange={handleInputChange} name="charge" value={values.charge}>1박 기준으로 금액을 입력해주세요.</Input></div>
 			<div className="input_box"><Input width="100%" height="52px" id="id" theme={{ borderColor: "#C4C4C4" }} onChange={handleInputChange} name="accName" value={values.title}>숙소명을 입력해 주세요.(최대 30자)</Input></div>
@@ -168,15 +160,23 @@ const ContainerForm = styled.form`
 	border-radius: 10px;
 	background-color: #fff;
 	padding: 20px 0 80px 0;
+	position: relative;
 	.formwriteH2 {
 		font-size	: 22px;
 		font-weight: 600;
 		text-align: center;
+		margin-bottom: 20px;
 	}
 	.image_box, .input_box {
 		margin-bottom: 15px;
 	}
-	
+	.arrow_inner {
+		position: absolute;
+		top: 20px;
+		right: 0px;
+		transform: rotate(-90deg);
+		font-size: 28px;
+	}
 `;
 
 export default FormWrite;

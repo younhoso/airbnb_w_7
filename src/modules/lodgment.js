@@ -21,14 +21,18 @@ const searchLodgment = createAction(SEARCH, (lodgments) => ({ lodgments }));
 
 // Thunk function
 // 데이터 서버로 전송
-export const lodgmentAdd = (content) => 
-	async (dispatch, getState, { history }) => {
-		await apis
-		.add(content)
-		.then((data) => {
-			dispatch(addLodgment(content));
-		})
+export const lodgmentAdd = (content) => {
+	return function (dispatch, getState, { history }) {
+			console.log(content)
+			apis
+			.add(content)
+			.then((data) => {
+				console.log(data)
+				dispatch(addLodgment(content));
+				history.replace('/');
+			})
 	};
+}
 
 // 해당 id의 데이터를 서버에 전송(수정).
 export const lodgmentEdit = (id, newLodgment) =>
@@ -121,6 +125,7 @@ export default handleActions(
 		},
 		[ADD_LODGMENT]: (state, action) =>
 			produce(state, (draft) => {
+				console.log(draft)
 				draft.list.push(action.payload.lodgments);
 			}),
 		[EDIT]: (state, action) => {
@@ -136,9 +141,3 @@ export default handleActions(
 	},
 	initialState,
 );
-
-const articleActions = {
-	lodgmentAdd,
-};
-
-export { articleActions };

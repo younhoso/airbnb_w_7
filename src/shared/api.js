@@ -9,20 +9,10 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config)=> {
-	config.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+	config.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
 	return config;
 },(err) => {
 	return Promise.reject(err);
-});
-
-api.interceptors.response.use((res) => {
-	console.log(res)
-	alert(res.data.message);
-	window.location.replace('/');
-	return res;
-}, (err) => {
-	alert(err.response.data.errorMessage)
-	return Promise.reject(err)
 });
 
 export const apis = {
@@ -52,9 +42,4 @@ export const apis = {
 	editComment: (id, content) => api.put(`/api/${id}`, { content }),
 	delComment: (id) => api.delete(`/api/${id}`),
 	
-	// images
-	// addImages : function (contents){ 
-	// 	console.log(contents)
-	// 	return api.post(`/api/images`, contents)
-	// }
 }
