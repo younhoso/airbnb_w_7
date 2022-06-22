@@ -6,7 +6,6 @@ import Home from './page/Home';
 import Login from './page/Login';
 import SignUp from './page/SignUp';
 import Write from './page/Write';
-import WriteEdit from './page/WriteEdit';
 import Detail from './page/Detail';
 import Reserv from './page/Reserv';
 import ReservConfirm from './page/ReservConfirm';
@@ -18,7 +17,6 @@ const Router = () => {
 			<Route path='/login' component={Login} />
 			<Route path='/signup' component={SignUp} />
 			<Route path='/add_lodgment' component={Write} />
-			<Route path='/lodgment/:id/edit' component={WriteEdit} />
 			<Route path='/detail/:id' component={Detail} />
 			<Route path='/reserv/:id' component={Reserv} />
 			<Route path='/confirm' component={ReservConfirm} />

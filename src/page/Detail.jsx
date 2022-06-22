@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import jwt_decode from "jwt-decode";
 import { SmallButton } from "../elem/Button";
-import { lodgmentGetId } from "../modules/lodgment";
+import { lodgmentDel, lodgmentGetId } from "../modules/lodgment";
 import { __commentsGet } from "../modules/comment";
 import CommentWrite from "../components/CommentWrite";
 import CommentList from "../components/CommentList";
@@ -18,6 +18,12 @@ const Detail = ({ history, match }) => {
 	const {userId} = jwt_decode(localStorage.getItem('token'));
 	const {params: { id }} = match;
 	
+	// 숙소 수정 함수
+	
+	// 숙소 삭제 함수
+	const handleDelete = () => {
+		dispatch(lodgmentDel(id)) 
+	};
 	
 	useEffect(() => {
 		setItems(comment)
@@ -38,7 +44,7 @@ const Detail = ({ history, match }) => {
 								{ user?.userId === userId && (
 									<>
 										<div className="btnItem" onClick={()=> {history.push("/lodgment/"+id+"/edit")}}><SmallButton bordercolor={"#C4C4C4"} color="#000">수정</SmallButton></div>
-										<div className="btnItem"><SmallButton background={"#C4C4C4"} color="#fff">삭제</SmallButton></div>
+										<div className="btnItem" onClick={handleDelete}><SmallButton background={"#C4C4C4"} color="#fff">삭제</SmallButton></div>
 									</>
 								)}
 							</div>

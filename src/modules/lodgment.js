@@ -83,6 +83,7 @@ export const lodgmentSearch = (value) => {
 // 해당 id의 데이터 삭제.
 export const lodgmentDel = (id) =>
 	async (dispatch, getState, { history }) => {
+		console.log(id)
 		try {
 			await apis.del(id);
 			history.replace('/');

@@ -60,7 +60,7 @@ const Container = styled.div`
 `
 
 const Card = styled.article`
-  width: 347px;
+  width: 100%;
   height: 315px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   border-radius: 8px;
