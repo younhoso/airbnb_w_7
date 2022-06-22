@@ -16,6 +16,9 @@ function BottomNav() {
         dispatch(logoutDB())
     }
 
+    useEffect(() => {
+
+    }, [])
 
 
     return (

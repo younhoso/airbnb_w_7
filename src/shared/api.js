@@ -8,10 +8,10 @@ const api = axios.create({
 	},
 });
 
-api.interceptors.request.use((config)=> {
+api.interceptors.request.use((config) => {
 	config.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
 	return config;
-},(err) => {
+}, (err) => {
 	return Promise.reject(err);
 });
 
@@ -51,8 +51,12 @@ export const apis = {
 	comments: (id) => api.get(`/api/reviews/${id}`),
 	editComment: (id, content) => api.put(`/api/${id}`, { content }),
 	delComment: (id) => api.delete(`/api/${id}`),
-	
+
 	// images
+	addImages: function (content) {
+		console.log(content)
+		return api.post(`/api/images`, content)
+	}
 	// addImages : function (contents){ 
 	// 	console.log(contents)
 	// 	return api.post(`/api/images`, contents)

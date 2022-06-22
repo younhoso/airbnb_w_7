@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
-import Nav from "../components/Nav";
 import BottomNav from "../components/BottomNav";
 import PostCard from "../components/PostCard";
 
@@ -15,11 +14,14 @@ import Surfing from "../assets/images/surfing.png"
 import Camp from "../assets/images/campsite.png"
 import Log from "../assets/images/log.png"
 import Share from "../assets/images/share-house.png"
+import { loginCheck } from "../modules/user";
 
 const Home = () => {
 	const dispatch = useDispatch()
 	const postList = useSelector((state) => state.post.list.accommodations)
 	const isLogin = localStorage.getItem("token")
+	const islogin = useSelector((state) => state.user.is_login)
+	console.log(islogin)
 	console.log(postList)
 
 	const categories = [
@@ -29,17 +31,11 @@ const Home = () => {
 		{ id: "통나무집", url: Log },
 		{ id: "셰어하우스", url: Share },
 	]
-	const [activeCate, setActiveCate] = useState(0);
-
-
 
 	useEffect(() => {
 		dispatch(getpostDB())
-	}, [])
-
-	// const handleCategory = (i) => {
-	// 	dispatch(getpostDB())
-	// }
+		dispatch(loginCheck());
+	}, [dispatch])
 
 	return (
 		<Section>
@@ -63,9 +59,9 @@ const Home = () => {
 						return <PostCard post={post} key={i} />
 					})
 				}
-				{isLogin ? <div className="btn-wrap">
+				{isLogin !== null && <div className="btn-wrap">
 					<Link to="/write"><AddBtn><i className="ic-plus"></i></AddBtn></Link>
-				</div> : null}
+				</div>}
 			</Main>
 			<BottomNav />
 		</Section>
@@ -86,6 +82,8 @@ const Main = styled.div`
     width: 375px;
 	max-width: 425px;
 	min-height: 950px;
+	padding-bottom: 60px;
+	background-color: white;
 	.btn-wrap {
 		position: fixed;
         width: 375px;
@@ -110,7 +108,7 @@ const NavSection = styled.nav`
 	/* border: 1px solid red; */
 	/* box-shadow: 0 2px 3px -2px rgba(0,0,0,.2); */
     .icon-box {
-        width: 375px;
+        width: 342px;
         display: flex;
         justify-content: space-between;
         margin: auto;
