@@ -18,7 +18,7 @@ function PostCard({ post }) {
   };
   return (
     <Container>
-      <Card>
+      <Card onClick={() => history.push(`/detail/${post.accId}`)}>
         <ImgSlider>
           <Slider {...settings} >
             {post.photos.map((p, i) => {

@@ -13,6 +13,7 @@ function App() {
 
 const AppWrapper = styled.div`
   background-color: #f5f5f5;
+  min-height: auto;
 `
 
 export default App;

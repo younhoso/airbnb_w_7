@@ -60,7 +60,7 @@ const Home = () => {
 					})
 				}
 				{isLogin !== null && <div className="btn-wrap">
-					<Link to="/write"><AddBtn><i className="ic-plus"></i></AddBtn></Link>
+					<Link to="/add_lodgment"><AddBtn><i className="ic-plus"></i></AddBtn></Link>
 				</div>}
 			</Main>
 			<BottomNav />

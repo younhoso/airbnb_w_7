@@ -48,7 +48,7 @@ const ImageRegist = ({onChange}) => {
 				onChange((prevValues) => {
 					return {
 						...prevValues,
-						photos: [...showImages, res.data.imageUrls]
+						photos: [...showImages, ...res.data.imageUrls]
 					}
 				})
       })

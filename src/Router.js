@@ -6,11 +6,10 @@ import Home from './page/Home';
 import Login from './page/Login';
 import SignUp from './page/SignUp';
 import Write from './page/Write';
+import WriteEdit from './page/WriteEdit';
 import Detail from './page/Detail';
-import DetailEdit from './page/DetailEdit';
 import Reserv from './page/Reserv';
 import ReservConfirm from './page/ReservConfirm';
-import ComponentTest from './page/ComponentTest';
 
 const Router = () => {
 	return (
@@ -18,12 +17,11 @@ const Router = () => {
 			<Route path="/" component={Home} exact />
 			<Route path='/login' component={Login} />
 			<Route path='/signup' component={SignUp} />
-			<Route path='/write' component={Write} />
+			<Route path='/add_lodgment' component={Write} />
+			<Route path='/lodgment/:id/edit' component={WriteEdit} />
 			<Route path='/detail/:id' component={Detail} />
-			<Route path='/detail/:id/edit' component={DetailEdit} />
 			<Route path='/reserv/:id' component={Reserv} />
 			<Route path='/confirm' component={ReservConfirm} />
-			<Route path='/component-test' component={ComponentTest} />
 			<Redirect from='*' to='/' />
 		</Switch>
 	);

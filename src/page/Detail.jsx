@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import jwt_decode from "jwt-decode";
 import { SmallButton } from "../elem/Button";
 import { lodgmentGetId } from "../modules/lodgment";
 import { __commentsGet } from "../modules/comment";
 import CommentWrite from "../components/CommentWrite";
 import CommentList from "../components/CommentList";
 
+
 const Detail = ({ history, match }) => {
 	const dispatch = useDispatch();
+	const user = useSelector((store) => store.lodgment.lodgment)
 	const lodgment = useSelector((store) => store.lodgment.lodgment)
 	const comment = useSelector((store) => store.comment.comments)
 	const [items, setItems] = useState([]);
+	const {userId} = jwt_decode(localStorage.getItem('token'));
 	const {params: { id }} = match;
-
+	
+	
 	useEffect(() => {
 		setItems(comment)
 		dispatch(lodgmentGetId(id));
@@ -22,6 +27,7 @@ const Detail = ({ history, match }) => {
 
 	return(
 		<DetailBx>
+			
 			{lodgment && (
 					<>
 						<div className="detail_tit">
@@ -30,8 +36,12 @@ const Detail = ({ history, match }) => {
 								<p>{lodgment.address}</p>
 							</div>
 							<div className="btnInner">
-								<div className="btnItem"><SmallButton bordercolor={"#C4C4C4"} color="#000">수정</SmallButton></div>
-								<div className="btnItem"><SmallButton background={"#C4C4C4"} color="#fff">삭제</SmallButton></div>
+								{ user?.userId === userId && (
+									<>
+										<div className="btnItem" onClick={()=> {history.push("/lodgment/"+id+"/edit")}}><SmallButton bordercolor={"#C4C4C4"} color="#000">수정</SmallButton></div>
+										<div className="btnItem"><SmallButton background={"#C4C4C4"} color="#fff">삭제</SmallButton></div>
+									</>
+								)}
 							</div>
 						</div>
 						<div className="detail_img">
