@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { useDaumPostcodePopup } from 'react-daum-postcode';
 import ImageRegist from "../elem/ImageRegist";
@@ -18,7 +18,7 @@ const INITIAL_VALUES = {
   photos: [],
 	category: '',
   accName: '',
-	openAt: new Date(),
+	openAt: '',
 	closeAt: '',
 	address: '',
 	zonecode: '',
@@ -121,8 +121,6 @@ const FormWrite = () => {
 				zonecode: zonecode
 			}
 		})
-    console.log(fullAddress);
-		console.log(zonecode)
   };
 
 	const handlePost = () => {
@@ -131,15 +129,13 @@ const FormWrite = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
 		const resOptions = {
-			body: values
+			data: values
 		};
 
 		try {
-			console.log(values)
-			// dispatch(lodgmentAdd(formData))
-			dispatch(lodgmentAdd(resOptions))
+			dispatch(lodgmentAdd(resOptions.data))
+			return;
     } catch (error) {
 
       return;

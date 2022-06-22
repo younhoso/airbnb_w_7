@@ -1,41 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { apis } from "../shared/api";
+import axios from "axios";
 
-const ImageRegist = ({name, imgFileValue, onChange}) => {
+const ImageRegist = () => {
 	const [showImages, setShowImages] = useState([]);
 	const [fileSize, setFileSize] = useState(true);
 	const [num, setNum] = useState(0);
+	const formData = new FormData();
 	
-	// 이미지 저장
+	// 이미지 추가
 	const handleAddImages = (e) => {
 		const imageLists = e.target.files;
 		setFileSize(true);
+		
+		if(imageLists.length > 0){
+			for (let i = 0; i < imageLists.length; i++) {
+				const maxSize = 2 * 1024 * 1024; //2MB용량
+				if (imageLists[i].size > maxSize) {
+					setFileSize(false); //이미지 용량 제안
+					return false;
+				}
+				const currentImageUrl = URL.createObjectURL(imageLists[i]);
+				formData.append(`images[${i}]`, currentImageUrl);
 
-    for (let i = 0; i < imageLists.length; i++) {
-			const maxSize = 2 * 1024 * 1024; //2MB용량
-			if (imageLists[i].size > maxSize){
-				setFileSize(false);
-				return;
+				setShowImages(function(preve){
+					return [...preve, currentImageUrl]
+				});
 			}
+		}
 
-			const currentImageUrl = URL.createObjectURL(imageLists[i]);
-			setShowImages(showImages.push(currentImageUrl))
-    }
-
-		return(
-			showImages.length > 5 ? (
-				window.alert("이미지는 5개까지만 등록할수 있습니다."),
-				setNum(0),
-				setShowImages([]),
-				onChange(name, [])
-			) : (
-				setNum(showImages.length),
-				setShowImages(showImages),
-				onChange(name, showImages)
-			)
-		)
-	}
+		if(showImages.length+1 > 4){
+			window.alert("이미지는 5개까지만 등록할수 있습니다.")
+			setShowImages([])
+			return;
+		}
+	};
 
 	// X버튼 클릭 시 이미지 삭제
   const handleDeleteImage = (id) => {
@@ -43,17 +42,33 @@ const ImageRegist = ({name, imgFileValue, onChange}) => {
 		setNum(num - 1)
 	};
 
+	const handleImgsApi = async() => {
+		await axios({
+			method: "post",
+			url: `http://3.34.42.87/api/images`,
+			headers: {     
+				"Content-Type": "multipart/form-data",
+				'Authorization': "Bearer " + localStorage.getItem('token') ,
+			},
+			data: formData
+			});
+	};
+	
+	useEffect(() => {
+		handleImgsApi();
+	},[showImages])
+
 	return(
 		<ImageRegistBx>
 			<input type="file" multiple id="file" accept="image/png, image/jpeg" onChange={handleAddImages}/>
 			<label htmlFor="file">
 				<div className="file-add-inner">
 					<i className="ic-plus"></i>
-					<p className="num num-start">{num}<span className="num num-end">/5</span></p>
+					<p className="num num-start">{showImages.length}<span className="num num-end">/5</span></p>
 				</div>
 			</label> 
-			{imgFileValue && <button onClick={handleDeleteImage}></button>}
-			{showImages.map((image, idx) => (
+			{showImages && <button onClick={handleDeleteImage}></button>}
+			{showImages && showImages.map((image, idx) => (
 				<ShowImageInner key={idx}>
 					<div className="deleteBtn" onClick={() => handleDeleteImage(idx)}><i className="ic-close close"></i></div>
 					<span className="bgImg" style={{backgroundImage: `url(${image})`}}></span>

@@ -1,21 +1,28 @@
 import axios from "axios";
 
 const api = axios.create({
-<<<<<<< HEAD
-	// baseURL: "http://localhost:5001",
-=======
->>>>>>> 3cc811e1f78e27c379bd23e4f3d4851411b1aafe
 	baseURL: "http://3.34.42.87",
 	headers: {
-		'content-type': 'application/json;charset=UTF-8',
+		'Content-type': 'application/json;charset=UTF-8',
 		accept: 'application/json,',
 	},
 });
 
-api.interceptors.request.use(function (config) {
-	const accessToken = document.cookie.split('=')[1];
-	config.headers.common['X-AUTH-TOKEN'] = `${accessToken}`;
+api.interceptors.request.use((config)=> {
+	config.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
 	return config;
+},(err) => {
+	return Promise.reject(err);
+});
+
+api.interceptors.response.use((res) => {
+	console.log(res)
+	alert(res.data.message);
+	window.location.replace('/');
+	return res;
+}, (err) => {
+	alert(err.response.data.errorMessage)
+	return Promise.reject(err)
 });
 
 export const apis = {
@@ -31,9 +38,9 @@ export const apis = {
 	login: (userId, password) => api.post('/api/users/login', { userId, password }),
 
 	// post
-	get: (postList) => api.get('/api/accommodations/', postList),
+	get: (postList) => api.get('/api/accommodations', postList),
 	add: (contents) => api.post('/api/accommodations', contents),
-	edit: (id, contents) => api.put(`api/${id}`, contents),
+	edit: (id, contents) => api.put(`/api/${id}`, contents),
 	del: (id) => api.delete(`/api/${id}`),
 	lookups: () => api.get('/accommodation'),
 	lookup: (id) => api.get(`/api/accommodations/${id}`),
@@ -46,8 +53,8 @@ export const apis = {
 	delComment: (id) => api.delete(`/api/${id}`),
 	
 	// images
-	addImages : function (content){ 
-		console.log(content)
-		return api.post(`/api/images`, content)
-	}
+	// addImages : function (contents){ 
+	// 	console.log(contents)
+	// 	return api.post(`/api/images`, contents)
+	// }
 }
