@@ -18,12 +18,12 @@ function PostCard({ post }) {
   };
   return (
     <Container>
-      <Card onClick={() => history.replace(`/detail/${post.accId}`)}>
+      <Card>
         <ImgSlider>
           <Slider {...settings} >
             {post.photos.map((p, i) => {
               return (
-                <CardImg src={p} key={i} />
+                <CardImg src={p} key={i} onClick={() => history.push(`/detail/${post.accId}`)} />
               )
             })
             }
