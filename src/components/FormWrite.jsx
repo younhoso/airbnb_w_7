@@ -147,12 +147,12 @@ const FormWrite = ({props}) => {
 		<ContainerForm onSubmit={ data ? updateLodgment : handleSubmit}>
 			<h2 className="formwriteH2"> {data ? "숙소 수정" : "숙소 등록"}</h2>
 			<Link to="/"><div className="arrow_inner"><i className="ic-arrow-top"></i></div></Link>
-			<div className="image_box"><ImageRegist onChange={setValues}/></div>
-			<div className="input_box"><Select onChange={handleSelect} /></div>
+			<div className="image_box"><ImageRegist imgs={data && data.photos} onChange={setValues}/></div>
+			<div className="input_box"><Select item={data && data.category} onChange={handleSelect} /></div>
 			<div className="input_box"><Input width="100%" height="52px" id="id" theme={{ borderColor: "#C4C4C4" }} onChange={handleInputChange} name="charge" defaultValue={data && data.charge} >1박 기준으로 금액을 입력해주세요.</Input></div>
 			<div className="input_box"><Input width="100%" height="52px" id="id" theme={{ borderColor: "#C4C4C4" }} onChange={handleInputChange} name="accName" defaultValue={data && data.accName}>숙소명을 입력해 주세요.(최대 30자)</Input></div>
 			<div className="input_box"><Text className="txtBx" onChange={handleInputChange} name="desc1_hanmadi" defaultValue={data && data.desc1_hanmadi}>사장님 한마디 해주세요.(최대 1,000자)</Text></div>
-			<Calender startDate={data ? new Date(data.openAt) : startDate} endDate={data ? new Date(data.closeAt) : endDate} onchange={changeCalender}/>
+			<Calender startDate={startDate} endDate={endDate} onchange={changeCalender}/>
 			<AddressInfo address={data && data.address} detailAddress={values.detailAddress} zonecode={values.zonecode} onChange={handleInputChange} handlePost={handlePost}/>
 			<Service checkedName={data ? data.facilities : ""} oncheck={handlerChecked}/>
 			<div className="input_box"><AroundInfo tit={"주변정보"} txt={"숙소 주변 정보를 입력해 주세요.(최대 1,000자)"} onChange={handleInputChange} name="desc2_surroundings" defaultValue={data && data.desc2_surroundings} /></div>

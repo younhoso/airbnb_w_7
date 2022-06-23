@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
-const ImageRegist = ({onChange}) => {
-	const [showImages, setShowImages] = useState([]);
+const ImageRegist = ({imgs, onChange}) => {
+	const [showImages, setShowImages] = useState(imgs ? imgs : []);
 	const [fileSize, setFileSize] = useState(true);
 	const [num, setNum] = useState(0);
 	const fileInput = React.useRef();
@@ -73,7 +73,6 @@ const ImageRegist = ({onChange}) => {
 					<p className="num num-start">{showImages.length}<span className="num num-end">/5</span></p>
 				</div>
 			</label> 
-			{showImages && <button onClick={handleDeleteImage}></button>}
 			{showImages && showImages.map((image, idx) => (
 				<ShowImageInner key={idx}>
 					<div className="deleteBtn" onClick={() => handleDeleteImage(idx)}><i className="ic-close close"></i></div>

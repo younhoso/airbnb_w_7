@@ -6,15 +6,18 @@ import produce from "immer";
 // Actions
 const LOGIN = "user/LOGIN";
 const LOGOUT = "user/LOGOUT";
+const CHACK = "user/CHACK";
 
 const initialState = {
     user: null,
+    userId: null,
     is_login: false,
 };
 
 // Action Creators
 const loginUser = createAction(LOGIN, (user) => ({ user }))
 const logOutUser = createAction(LOGOUT, (user) => ({ user }))
+const userChack = createAction(CHACK, (user) => ({ user }))
 
 // middlewares
 export const signupDB = (userId, password, passwordCheck, name, birth, gender) => {
@@ -67,6 +70,19 @@ export const loginDB = (userId, password) => {
     }
 }
 
+// 사용자확인
+export const userConfirm = () => {
+    return function (dispatch){
+        apis.userConf({
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        }).then((res) => {
+            dispatch(userChack(res))
+        })
+    }
+};
+
 export const loginCheck = () => {
     return function (dispatch) {
         const userToken = localStorage.getItem("token");
@@ -100,6 +116,10 @@ export default handleActions(
             produce(state, (draft) => {
                 draft.user = {};
                 draft.is_login = false;
+            }),
+        [CHACK]: (state, action) =>
+            produce(state, (draft) => {
+                draft.userId = action.payload.user.data.userInfo
             })
     },
     initialState
