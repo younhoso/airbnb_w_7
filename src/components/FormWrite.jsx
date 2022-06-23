@@ -41,7 +41,7 @@ const FormWrite = ({props}) => {
 	const [Dday, setDday] = useState("");
 	const open = useDaumPostcodePopup("https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js");
 	const dispatch = useDispatch();
-	console.log(data)
+	console.log(values)
 
 	const handleChange = (name, value) => {
     setValues(function(prevValues){
@@ -92,7 +92,7 @@ const FormWrite = ({props}) => {
 		const Sday = start === null ? "" : start.getDate()
 		const Eday = end === null ? "" : end.getDate()
 		
-		const date = `${Smonth}월 ${Sday}일 ~ ${Emonth}월 ${Eday}일`
+		const date = `${Smonth}월 ${Sday}일 ~ ${Emonth}월 ${Eday}일`;
 		setDday(date)
 
 		setValues((prevValue) => {
@@ -166,7 +166,7 @@ const FormWrite = ({props}) => {
 			<div className="input_box"><AroundInfo tit={"주변정보"} txt={"숙소 주변 정보를 입력해 주세요.(최대 1,000자)"} onChange={handleInputChange} name="desc2_surroundings" currentValue={data && data.desc2_surroundings} defaultValue={data && data.desc2_surroundings}/></div>
 			<div className="input_box"><AroundInfo tit={"공지사항"} txt={"전체 공지 사항을 남겨주세요.(최대 1,000자)"} onChange={handleInputChange} name="desc3_notice" currentValue={data && data.desc3_notice} defaultValue={data && data.desc3_notice}/></div>
 			<div className="input_box"><AroundInfo tit={"기본 정보"} txt={"숙소에 대한 기본적인 정보를 입력해 주세요.(최대 1,000자)"} onChange={handleInputChange} name="desc4_basics" currentValue={data && data.desc4_basics} defaultValue={data && data.desc4_basics}/></div>
-			<Floating charge={data ? data.charge : values.charge} Dday={ data ? (data.openAt, data.closeAt) : Dday}/>
+			<Floating Dday={ data ? (data.openAt, data.closeAt) : Dday} charge={data ? data.charge : values.charge} txt={"등록하기"}/>
 		</ContainerForm>
 	)
 };
