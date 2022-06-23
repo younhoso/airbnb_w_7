@@ -3,15 +3,31 @@ import styled from "styled-components";
 import { M_PointBtn } from "../elem/Button";
 import {comma} from '../shared/common';
 
-const Floating = ({charge, Dday}) => {
+const Floating = ({openAt, closeAt, Dday, charge, txt}) => {
 	return(
 		<FloatingBx>
 			<div>
 				<div>
 					<span className="txt_m"> {comma(charge)}원</span> <span className="txt_s">/ 박</span>
-					<div>{Dday}</div>
+					<div className="day_inner">
+						{
+						Dday
+						? (
+							<div>{Dday}</div>
+						) : (
+							<>
+								{openAt?.split("-")[1].split("")[0] === "0" ? openAt?.split("-")[1].split("")[1] : openAt?.split("-")[1]}월
+								{openAt?.split("-")[2].split("")[0] === "0" ? openAt?.split("-")[2].split("",)[1] : openAt?.split("-")[2].split("", 2)}일~
+								{closeAt?.split("-")[1].split("")[0] === "0" ? closeAt?.split("-")[1].split("")[1] : closeAt?.split("-")[1]}월
+								{closeAt?.split("-")[2].split("")[0] === "0" ? closeAt?.split("-")[2].split("")[1] : closeAt?.split("-")[2].split("", 2)}일
+								<span>(예약 가능 날짜)</span>
+							</>
+						)
+						}
+					
+					</div>
 				</div>
-				<M_PointBtn scolor="#471868" ecolor="#38157D" background="#C4C4C4" color="#fff" type="submit">등록하기</M_PointBtn>
+				<M_PointBtn scolor="#471868" ecolor="#38157D" background="#C4C4C4" color="#fff" type="submit">{txt}</M_PointBtn>
 			</div>
 		</FloatingBx>
 	)
@@ -38,6 +54,12 @@ const FloatingBx = styled.div`
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+	}
+	.day_inner {
+		font-size: 14px;
+		span {
+			font-size: 14px;
+		}
 	}
 `;
 

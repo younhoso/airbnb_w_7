@@ -8,6 +8,7 @@ import { __commentsGet } from "../modules/comment";
 import { userConfirm } from "../modules/user";
 import CommentWrite from "../components/CommentWrite";
 import CommentList from "../components/CommentList";
+import Floating from "../components/Floating";
 
 const Detail = ({ history, match }) => {
 	const dispatch = useDispatch();
@@ -80,7 +81,7 @@ const Detail = ({ history, match }) => {
 							<div className="comment_write">
 								<CommentWrite/>
 							</div>
-							<ul>
+							<ul className="comment_inner">
 								{ comment && (
 									comment.map((el, idx) => {
 										return(
@@ -89,6 +90,7 @@ const Detail = ({ history, match }) => {
 								}
 							</ul>
 						</div>
+						<Floating openAt={lodgment.openAt} closeAt={lodgment.closeAt} charge={lodgment.charge} txt={"예약하기"}></Floating>
 					</>
 				)
 			}
@@ -100,6 +102,7 @@ const DetailBx = styled.div`
 	max-width: 425px;
 	margin: 0 auto;
 	background-color: #fff;
+	padding-bottom: 40px;
 	.detail_tit {
 		display: flex;
 		justify-content: space-between;
@@ -234,6 +237,10 @@ const DetailBx = styled.div`
 
 		.text_inner {
 			margin: 10px 0;
+		}
+
+		.comment_inner {
+			margin: 33px 0;
 		}
 	}
 `

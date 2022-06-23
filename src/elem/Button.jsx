@@ -58,6 +58,7 @@ export const M_PointBtn = styled.button`
     color: ${(props) => props.color || "transparent"};
     border-radius: 6px;
     font-size: 12px;
+    font-weight: 600;
 `
 
 // export default LargeButton
