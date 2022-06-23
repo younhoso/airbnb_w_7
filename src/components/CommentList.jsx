@@ -3,13 +3,13 @@ import styled from "styled-components";
 import Rating from '../elem/Rating';
 
 const CommentList = ({item}) => {
-
 	return(
 		<CommentListBx> 
 				<div className="img_wrap">
 					<div className="item">
 						<div>{item.userId}</div>
-						<div>{item.createdAt}</div>
+						<Rating value={item.stars}/>
+						<span className='comment_day_create'>{item.createdAt}</span>
 						<div className='img_inner'>
 							{item.photos && (
 								item.photos.map((el, idx) => {
@@ -19,11 +19,9 @@ const CommentList = ({item}) => {
 										</div>
 									)
 								})
-								)
-							}
+							)}
 						</div>
-						<Rating value={item.stars}/>
-						<p>{item.content}</p>
+						<p className='txt'>{item.content}</p>
 						<div></div>
 					</div>
 				</div>
@@ -34,10 +32,15 @@ const CommentList = ({item}) => {
 const CommentListBx = styled.li`
 	max-width: 425px;
 	margin: 0 auto;
+	padding-bottom: 20px;
 	.img_wrap {
 		white-space: nowrap;
 		overflow-x: auto;
+		.comment_day_create {
+			margin-left: 10px;
+		}
 		.img_inner {
+			margin-top: 10px;
 			overflow-x: auto;
 				.img_item {
 					width: 90px;
@@ -48,7 +51,10 @@ const CommentListBx = styled.li`
 				.img_item:nth-child(1) {
 					margin-left: 0;
 				}
-			}
+		}
+		.txt {
+			margin-top: 4px;
+		}
 	}
 	img {
 		width: 100%;

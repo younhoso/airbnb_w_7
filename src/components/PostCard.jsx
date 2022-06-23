@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"
 import { useHistory } from 'react-router-dom';
+import {comma} from "../shared/common"
 
 function PostCard({ post }) {
   const history = useHistory();
@@ -47,7 +48,7 @@ function PostCard({ post }) {
             </ReservText>
           }
         </div>
-        <ChargeText>{post.charge} / 박</ChargeText>
+        <ChargeText>{comma(post.charge)} / 박</ChargeText>
       </Card>
     </Container>
   )
