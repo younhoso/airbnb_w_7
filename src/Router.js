@@ -17,7 +17,7 @@ const Router = () => {
 			<Route path='/login' component={Login} />
 			<Route path='/signup' component={SignUp} />
 			<Route path='/write' component={Write} />
-			<Route path='/write/:id/edit' component={Write} />
+			<Route path='/write/:id' component={Write} />
 			<Route path='/detail/:id' component={Detail} />
 			<Route path='/reserv/:id' component={Reserv} />
 			<Route path='/confirm' component={ReservConfirm} />
