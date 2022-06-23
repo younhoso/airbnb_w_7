@@ -35,10 +35,13 @@ export const lodgmentAdd = (content) => {
 // 해당 id의 데이터를 서버에 전송(수정).
 export const lodgmentEdit = (id, newLodgment) =>
 	async (dispatch, getState, { history }) => {
+		console.log(id)
+		console.log(newLodgment)
 		try {
 			await apis.edit(id, newLodgment);
 			dispatch(editLodgment(id, newLodgment));
-			history.goBack();
+			window.alert('수정완료');
+			history.push('/');
 		} catch (e) {
 			// console.log(e);
 		}
@@ -86,6 +89,7 @@ export const lodgmentDel = (id) =>
 		console.log(id)
 		try {
 			await apis.del(id);
+			window.alert('삭제완료');
 			history.replace('/');
 		} catch (e) {}
 	};

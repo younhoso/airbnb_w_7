@@ -1,7 +1,6 @@
 import React,{useState} from "react";
 import styled from "styled-components";
 import Input from "../elem/Input";
-import {MediunButton} from "../elem/Button"
 
 const AddressInfo = ({name, address, zonecode, detailAddress, handlePost, onChange}) => {
 	const [isActive, setActive] = useState("false");

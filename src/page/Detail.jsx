@@ -16,6 +16,7 @@ const Detail = ({ history, match }) => {
 	const lodgment = useSelector((store) => store.lodgment.lodgment)
 	const comment = useSelector((store) => store.comment.comments)
 	const {params: { id }} = match;
+	console.log(lodgment)
 
 	// 숙소 삭제 함수
 	const handleDelete = () => {
@@ -42,7 +43,7 @@ const Detail = ({ history, match }) => {
 									<>
 										<Link
 											to={{
-												pathname: `/write/${id}/edit`,
+												pathname: `/write/${id}`,
 												state: lodgment,
 											}}>
 											<div className="btnItem"><SmallButton bordercolor={"#C4C4C4"} color="#000">수정</SmallButton></div>
@@ -61,10 +62,15 @@ const Detail = ({ history, match }) => {
 								})}
 							</ul>
 						</div>
-						<div className="detail_doc"><p>{lodgment.desc1_hanmadi}</p></div>
+						<div className="desc_inner">
+							<div className="detail_dosc1"><div>사장님 한마디:</div>{lodgment.desc1_hanmadi}</div>
+							<div className="detail_dosc2"><div>주변정보:</div>{lodgment.desc2_surroundings}</div>
+							<div className="detail_dosc3"><div>공지사항:</div>{lodgment.desc3_notice}</div>
+							<div className="detail_dosc4"><div>기본정보:</div>{lodgment.desc4_basics}</div>
+						</div>
 						<div className="detail_btn_inner">
-							<div>like</div>
-							<div>장소 공유</div>
+							<div className="like_inner"><i className="ic-like-off"></i></div>
+							<div className="share_inner"><i className="ic-share"></i> 장소 공유</div>
 						</div>
 						<div className="detail_comment_inner">
 							<div className="comment_header">
@@ -142,11 +148,49 @@ const DetailBx = styled.div`
 		img {width: 100%;}
 	}
 
-	.detail_doc {
+	.desc_inner {
 		padding: 10px 20px 0 20px;
+		.detail_dosc1 {
+			>div {
+				font-weight: 600;
+			}
+		}
+		.detail_dosc2 {
+			>div {
+				font-weight: 600;
+			}
+		}
+		.detail_dosc3 {
+			>div {
+				font-weight: 600;
+			}
+		}
+		.detail_dosc4 {
+			>div {
+				font-weight: 600;
+			}
+		}
 	}
 	.detail_btn_inner {
+		display: flex;
 		padding: 10px 20px 0 20px;
+		justify-content: space-between;
+		.like_inner {
+			width: 38px;
+			height: 38px;
+			line-height: 38px;
+			text-align: center;
+			border-radius: 50%;
+			background-color: #F4F4F4;
+		}
+		.share_inner {
+			width: 100px;
+    	height: 38px;
+			line-height: 38px;
+			text-align: center;
+			border-radius: 6px;
+			background-color: #F4F4F4;
+		}
 	}
 	.detail_comment_inner {
 		padding: 10px 20px 0 20px;
@@ -157,7 +201,9 @@ const DetailBx = styled.div`
 			justify-content: space-between;
 			padding: 0 0 10px 0;
 			.star-write {
-				font-size: 11px;
+				width: 100px;
+				height: 38px;
+				font-size: 14px;
 			}
 		}
 		.comment_write {
