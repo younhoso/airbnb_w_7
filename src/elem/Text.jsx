@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const Text = ({name, value, onChange, children}) => {
+const Text = ({name, value, onChange, defaultValue, children}) => {
 	return(
-		<TextBx name={name} value={value} onChange={onChange} placeholder={children}></TextBx>
+		<TextBx name={name} value={value} onChange={onChange} defaultValue={defaultValue} placeholder={children}></TextBx>
 	)
 }
 const TextBx = styled.textarea`

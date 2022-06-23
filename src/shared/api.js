@@ -30,7 +30,7 @@ export const apis = {
 	// post
 	get: (postList) => api.get('/api/accommodations', postList),
 	add: (contents) => api.post('/api/accommodations', contents),
-	edit: (id, contents) => api.put(`/api/${id}`, contents),
+	edit: (id, contents) => api.put(`/api/accommodations/${id}`, contents),
 	del: (id) => api.delete(`/api/accommodations/${id}`),
 	lookups: () => api.get('/accommodation'),
 	lookup: (id) => api.get(`/api/accommodations/${id}`),

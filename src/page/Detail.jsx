@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { SmallButton } from "../elem/Button";
 import { lodgmentDel, lodgmentGetId } from "../modules/lodgment";
 import { __commentsGet } from "../modules/comment";
 import CommentWrite from "../components/CommentWrite";
 import CommentList from "../components/CommentList";
-
 
 const Detail = ({ history, match }) => {
 	const dispatch = useDispatch();
@@ -17,16 +17,13 @@ const Detail = ({ history, match }) => {
 	const [items, setItems] = useState([]);
 	const {userId} = jwt_decode(localStorage.getItem('token'));
 	const {params: { id }} = match;
-	
-	// 숙소 수정 함수
-	
+
 	// 숙소 삭제 함수
 	const handleDelete = () => {
 		dispatch(lodgmentDel(id)) 
 	};
 	
 	useEffect(() => {
-		setItems(comment)
 		dispatch(lodgmentGetId(id));
 		dispatch(__commentsGet(id));
 	}, [dispatch]);
@@ -43,7 +40,13 @@ const Detail = ({ history, match }) => {
 							<div className="btnInner">
 								{ user?.userId === userId && (
 									<>
-										<div className="btnItem" onClick={()=> {history.push("/lodgment/"+id+"/edit")}}><SmallButton bordercolor={"#C4C4C4"} color="#000">수정</SmallButton></div>
+										<Link
+											to={{
+												pathname: `/write/${id}/edit`,
+												state: lodgment,
+											}}>
+											<div className="btnItem"><SmallButton bordercolor={"#C4C4C4"} color="#000">수정</SmallButton></div>
+										</Link>
 										<div className="btnItem" onClick={handleDelete}><SmallButton background={"#C4C4C4"} color="#fff">삭제</SmallButton></div>
 									</>
 								)}
