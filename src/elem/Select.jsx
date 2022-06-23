@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from "styled-components";
 
-function Select({onChange}) {
+function Select({item, onChange}) {
     return (
 			<SelectWrapper>
-				<SelectBx name="choice" onChange={onChange}>
-					<option value="">카테고리를 선택해주세요.</option>
+				<SelectBx name="choice" value={item} onChange={onChange}>
+					<option value="none">카테고리를 선택해주세요.</option>
 					<option value="서핑">서핑</option>
 					<option value="해변근처">해변근처</option>
 					<option value="캠핑장">캠핑장</option>

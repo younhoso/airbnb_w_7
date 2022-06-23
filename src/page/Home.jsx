@@ -20,7 +20,6 @@ const Home = () => {
 	const dispatch = useDispatch()
 	const postList = useSelector((state) => state.post.list.accommodations)
 	const isLogin = localStorage.getItem("token")
-	const islogin = useSelector((state) => state.user.is_login)
 
 	const categories = [
 		{ id: "서핑", url: Surfing },
@@ -70,6 +69,7 @@ const Section = styled.div`
 	width: 100%;
 	display: flex;
 	min-height: 950px;
+	padding: 0 20px;
 	flex-direction: column;
 	align-items:center;
 	div {
@@ -81,7 +81,7 @@ const Main = styled.div`
 	max-width: 425px;
 	min-height: 950px;
 	padding-bottom: 60px;
-	background-color: white;
+	
 	.btn-wrap {
 		position: fixed;
         width: 375px;

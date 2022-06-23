@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import styled from "styled-components";
 import Text from "../elem/Text";
 
-const AroundInfo = ({name, tit, txt, value, onChange}) => {
+const AroundInfo = ({name, tit, txt, value, onChange, defaultValue}) => {
 	const [isActive, setActive] = useState("false");
 
 	const hanleDropDownBox = (e) => {
@@ -16,7 +16,7 @@ const AroundInfo = ({name, tit, txt, value, onChange}) => {
 				<i className={`ic-arrow-top ${isActive ? "on" : "off"}`}></i>
 			</div>
 			<ContensInner height="140px" className={`contents ${isActive ? "on" : "off"}`}>
-				<Text name={name} value={value} onChange={onChange}>{txt}</Text>
+				<Text name={name} value={value} onChange={onChange} defaultValue={defaultValue}>{txt}</Text>
 			</ContensInner>
 		</AroundInfoBx>
 	)

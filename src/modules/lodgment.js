@@ -21,14 +21,16 @@ const searchLodgment = createAction(SEARCH, (lodgments) => ({ lodgments }));
 
 // Thunk function
 // 데이터 서버로 전송
-export const lodgmentAdd = (content) => 
-	async (dispatch, getState, { history }) => {
-		await apis
-		.add(content)
-		.then((data) => {
-			dispatch(addLodgment(content));
-		})
+export const lodgmentAdd = (content) => {
+	return function (dispatch, getState, { history }) {
+			apis
+			.add(content)
+			.then(() => {
+				dispatch(addLodgment(content));
+				history.replace('/');
+			})
 	};
+}
 
 // 해당 id의 데이터를 서버에 전송(수정).
 export const lodgmentEdit = (id, newLodgment) =>
@@ -81,6 +83,7 @@ export const lodgmentSearch = (value) => {
 // 해당 id의 데이터 삭제.
 export const lodgmentDel = (id) =>
 	async (dispatch, getState, { history }) => {
+		console.log(id)
 		try {
 			await apis.del(id);
 			history.replace('/');
@@ -89,19 +92,8 @@ export const lodgmentDel = (id) =>
 
 // initialState
 const initialState = {
-	photos: [],
-	category: '',
-  accName: '',
-	openAt: '',
-	closeAt: '',
-	address: '',
-  desc1_hanmadi: '',
-	desc2_surroundings: '',
-	desc3_notice: '',
-	desc4_basics: '',
-	facilities: [],
-	charge: 0,
-  rating: 0,
+	list: [],
+	lodgment: null,
 }
 
 // reducer
@@ -121,6 +113,7 @@ export default handleActions(
 		},
 		[ADD_LODGMENT]: (state, action) =>
 			produce(state, (draft) => {
+				console.log(draft)
 				draft.list.push(action.payload.lodgments);
 			}),
 		[EDIT]: (state, action) => {
@@ -136,9 +129,3 @@ export default handleActions(
 	},
 	initialState,
 );
-
-const articleActions = {
-	lodgmentAdd,
-};
-
-export { articleActions };

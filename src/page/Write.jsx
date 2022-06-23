@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import FormWrite from "../components/FormWrite";
 
-const Write = () => {
+const Write = (props) => {
 	return(
 		<WriteBx>
-			<FormWrite />
+			<FormWrite props={props}/>
 		</WriteBx>
 	)
 };
