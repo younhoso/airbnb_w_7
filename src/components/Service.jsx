@@ -1,9 +1,8 @@
 import React,{useState} from "react";
 import styled from "styled-components";
 
-const Service = ({oncheck}) => {
+const Service = ({checkedName, oncheck}) => {
 	const [isActive, setActive] = useState("false");
-
   const [footCheck, setfootCheck] = useState(false);
   const [wiFiCheck, setWiFiCheck] = useState(false);
   const [pickUpCheck, setPickUpCheck] = useState(false);
@@ -137,51 +136,51 @@ const Service = ({oncheck}) => {
 			</div>
 			<ServiceInner height="220px" className={`contents ${isActive ? "on" : "off"}`}>
         	<div className="item">
-        		<input type="checkbox" id="check1" checked={footCheck} onChange={footBtnEvent}/>
+        		<input type="checkbox" id="check1" checked={checkedName[0]} onChange={footBtnEvent}/>
         		<label htmlFor="check1">족구장</label>
         	</div>
         	<div className="item">
-        		<input type="checkbox" id="check2" checked={wiFiCheck}  onChange={WiFiBtnEvent}/>
+        		<input type="checkbox" id="check2" checked={checkedName[1]}  onChange={WiFiBtnEvent}/>
         		<label htmlFor="check2">와이파이</label>
         	</div>
         	<div className="item">
-        		<input type="checkbox" id="check3" checked={pickUpCheck}  onChange={PickUpBtnEvent}/>
+        		<input type="checkbox" id="check3" checked={checkedName[2]}  onChange={PickUpBtnEvent}/>
         		<label htmlFor="check3">픽업가능</label>
 					</div>
 					<div className="item">
-        		<input type="checkbox" id="check4" checked={freeParkingCheck}  onChange={freeParkingBtnEvent}/>
+        		<input type="checkbox" id="check4" checked={checkedName[3]}  onChange={freeParkingBtnEvent}/>
         		<label htmlFor="check4">무료주차</label>
 					</div>
 					<div className="item">
-        		<input type="checkbox" id="check5" checked={bbQCheck}  onChange={bbqBtnEvent}/>
+        		<input type="checkbox" id="check5" checked={checkedName[4]}  onChange={bbqBtnEvent}/>
         		<label htmlFor="check5">BBQ</label>
 					</div>
 					<div className="item">
-        		<input type="checkbox" id="check6" checked={parkingCheck}  onChange={parkingBtnEvent}/>
+        		<input type="checkbox" id="check6" checked={checkedName[5]}  onChange={parkingBtnEvent}/>
         		<label htmlFor="check6">주차장</label>
 					</div>
 					<div className="item">
-        		<input type="checkbox" id="check7" checked={tvCheck}  onChange={tvBtnEvent}/>
+        		<input type="checkbox" id="check7" checked={checkedName[6]}  onChange={tvBtnEvent}/>
         		<label htmlFor="check7">TV</label>
 					</div>
 					<div className="item">
-        		<input type="checkbox" id="check8" checked={airCheck}  onChange={airBtnEvent}/>
+        		<input type="checkbox" id="check8" checked={checkedName[7]}  onChange={airBtnEvent}/>
         		<label htmlFor="check8">에어컨</label>
 					</div>
 					<div className="item">
-        		<input type="checkbox" id="check9" checked={showerCheck}  onChange={showerBtnEvent}/>
+        		<input type="checkbox" id="check9" checked={checkedName[8]}  onChange={showerBtnEvent}/>
         		<label htmlFor="check9">객실샤워실</label>
 					</div>
 					<div className="item">
-        		<input type="checkbox" id="check10" checked={smokingCheck}  onChange={smokingBtnEvent}/>
+        		<input type="checkbox" id="check10" checked={checkedName[9]}  onChange={smokingBtnEvent}/>
         		<label htmlFor="check10">금연</label>
 					</div>
 					<div className="item">
-        		<input type="checkbox" id="check11" checked={dogCheck}  onChange={dogBtnEvent}/>
+        		<input type="checkbox" id="check11" checked={checkedName[10]}  onChange={dogBtnEvent}/>
         		<label htmlFor="check11">반려견동반</label>
 					</div>
 					<div className="item">
-        		<input type="checkbox" id="check12" checked={cookingCheck}  onChange={cookingBtnEvent}/>
+        		<input type="checkbox" id="check12" checked={checkedName[11]}  onChange={cookingBtnEvent}/>
         		<label htmlFor="check12">객실내취사</label>
 					</div>
 			</ServiceInner>

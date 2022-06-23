@@ -1,24 +1,26 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import styled from "styled-components";
 import Rating from '../elem/Rating';
 
 const CommentList = ({item}) => {
-	console.log(item)
+
 	return(
 		<CommentListBx> 
 				<div className="img_wrap">
 					<div className="item">
-						<div>test@example.com</div>
-						<div>2022/04/11</div>
+						<div>{item.userId}</div>
+						<div>{item.createdAt}</div>
 						<div className='img_inner'>
-							{item.photos.map((el, idx) => {
-								return(
-									<div key={idx} className="img_item">
-										<img src={el} alt="댓글 섬네일"/>
-									</div>
+							{item.photos && (
+								item.photos.map((el, idx) => {
+									return(
+										<div key={idx} className="img_item">
+											<img src={el} alt="댓글 섬네일"/>
+										</div>
+									)
+								})
 								)
-							})}
+							}
 						</div>
 						<Rating value={item.stars}/>
 						<p>{item.content}</p>

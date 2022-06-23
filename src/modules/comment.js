@@ -17,15 +17,15 @@ const editComment = createAction(EDIT, (coId, newContent) => ({
 }));
 
 // Thunk function
-export const commentAdd = (id, content) =>
-	async (dispatch, getState, { history }) => {
+export const __commentAdd = (id, content) =>
+	async (dispatch) => {
 		try {
 			const { data } = await apis.addComment(id, content);
 			dispatch(addComment(data));
 		} catch (e) {}
 	};
 
-export const commentsGet = (id) =>
+export const __commentsGet = (id) =>
 	async (dispatch, getState, { history }) => {
 		try {
 			const { data } = await apis.comments(id);
@@ -35,13 +35,13 @@ export const commentsGet = (id) =>
 		}
 	};
 
-export const commentEdit = (id, coId, newContent, setEditMode) => async (dispatch) => {
+export const __commentEdit = (id, coId, newContent, setEditMode) => async (dispatch) => {
 		const { data } = await apis.editComment(id, coId, newContent);
 		dispatch(editComment(coId, data));
 		setEditMode(false);
 	};
 
-export const commentDel = (id, coId) => (dispatch) => {
+export const __commentDel = (id, coId) => (dispatch) => {
 	try {
 		apis.delComment(id, coId);
 		dispatch(delComment(coId));
@@ -52,6 +52,7 @@ export const commentDel = (id, coId) => (dispatch) => {
 const initialState = {
 	comment: null,
 	comments: [],
+	message: ''
 };
 
 // reducer
@@ -60,13 +61,13 @@ export default handleActions(
 		[ADD]: (state, action) => {
 			return {
 				...state,
-				comments: state.comments.concat(action.payload.comment),
+				message: action.payload.comment.message,
 			};
 		},
 		[LOAD]: (state, action) => {
 			return {
 				...state,
-				comments: action.payload.comment,
+				comments: action.payload.comment.review
 			};
 		},
 		

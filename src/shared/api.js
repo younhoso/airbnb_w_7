@@ -8,21 +8,11 @@ const api = axios.create({
 	},
 });
 
-api.interceptors.request.use((config) => {
-	config.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+api.interceptors.request.use((config)=> {
+	config.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
 	return config;
 }, (err) => {
 	return Promise.reject(err);
-});
-
-api.interceptors.response.use((res) => {
-	console.log(res)
-	alert(res.data.message);
-	window.location.replace('/');
-	return res;
-}, (err) => {
-	alert(err.response.data.errorMessage)
-	return Promise.reject(err)
 });
 
 export const apis = {
@@ -40,25 +30,15 @@ export const apis = {
 	// post
 	get: (postList) => api.get('/api/accommodations', postList),
 	add: (contents) => api.post('/api/accommodations', contents),
-	edit: (id, contents) => api.put(`/api/${id}`, contents),
-	del: (id) => api.delete(`/api/${id}`),
+	edit: (id, contents) => api.put(`/api/accommodations/${id}`, contents),
+	del: (id) => api.delete(`/api/accommodations/${id}`),
 	lookups: () => api.get('/accommodation'),
 	lookup: (id) => api.get(`/api/accommodations/${id}`),
 	search: (value) => api.get(`/api/${value}`),
 
 	// comment
-	addComment: (id, content) => api.post(`/api/${id}`, { content }),
+	addComment: (id, content) => api.post(`/api/reviews/${id}`, content),
 	comments: (id) => api.get(`/api/reviews/${id}`),
 	editComment: (id, content) => api.put(`/api/${id}`, { content }),
 	delComment: (id) => api.delete(`/api/${id}`),
-
-	// images
-	addImages: function (content) {
-		console.log(content)
-		return api.post(`/api/images`, content)
-	}
-	// addImages : function (contents){ 
-	// 	console.log(contents)
-	// 	return api.post(`/api/images`, contents)
-	// }
 }

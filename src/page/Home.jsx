@@ -72,6 +72,7 @@ const Section = styled.div`
 	width: 100%;
 	display: flex;
 	min-height: 950px;
+	padding: 0 20px;
 	flex-direction: column;
 	align-items:center;
 	div {
@@ -83,7 +84,7 @@ const Main = styled.div`
 	max-width: 425px;
 	min-height: 950px;
 	padding-bottom: 60px;
-	background-color: white;
+	
 	.btn-wrap {
 		position: fixed;
         width: 375px;

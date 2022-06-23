@@ -1,25 +1,17 @@
-import React,{useState} from "react";
+import React from "react";
 import DatePicker from "react-datepicker";
 import styled from "styled-components";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/esm/locale";
 
-
 const Calender = ({startDate, endDate, onchange}) => {
-	const [isActive, setActive] = useState("false");
-	const [Dday, setDday] = useState("");
-
-	const hanleDropDownBox = (e) => {
-		setActive(!isActive);
-	}
 	
 	return(
 		<CalenderBx className="CalenderBx">
-			<div className="boxInner" onClick={hanleDropDownBox}>
+			<div className="boxInner" >
 				<h2>숙소를 등록할 날짜를 선택해주세요.</h2>
 			</div>
-			<CalenderInner height="580px" className={`contents ${isActive ? "on" : "off"}`}>
-				<p>{Dday}</p>
+			<CalenderInner height="310px" className="contents">
 				<DatePicker
 					onChange={onchange}
 					startDate={startDate}
@@ -27,6 +19,7 @@ const Calender = ({startDate, endDate, onchange}) => {
 					selectsRange
 					minDate={new Date()}
 					locale={ko}
+					defaultDate={endDate}
 					inline/>
 			</CalenderInner>
 		</CalenderBx>

@@ -1,38 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 import { SmallButton } from "../elem/Button";
-import { lodgmentGetId } from "../modules/lodgment";
-import { commentsGet } from "../modules/comment";
+import { lodgmentDel, lodgmentGetId } from "../modules/lodgment";
+import { __commentsGet } from "../modules/comment";
 import CommentWrite from "../components/CommentWrite";
 import CommentList from "../components/CommentList";
 
 const Detail = ({ history, match }) => {
 	const dispatch = useDispatch();
+	const user = useSelector((store) => store.lodgment.lodgment)
 	const lodgment = useSelector((store) => store.lodgment.lodgment)
-	const comment = useSelector((store) => store.comment.comments.review)
-	// console.log(lodgment)
-	// console.log(comment)
+	const comment = useSelector((store) => store.comment.comments)
+	const [items, setItems] = useState([]);
+	const {userId} = jwt_decode(localStorage.getItem('token'));
 	const {params: { id }} = match;
-	const [values, setValues] = useState({
-		content: '',
-    imgFile: null,
-		rating: 0
-  });
-	
-	const handleChange = (name, value) => {
-    setValues(function(prevValues){
-			return {
-      	...prevValues,
-      	[name]: value,
-			}
-    });
-  };
+
+	// 숙소 삭제 함수
+	const handleDelete = () => {
+		dispatch(lodgmentDel(id)) 
+	};
 	
 	useEffect(() => {
 		dispatch(lodgmentGetId(id));
-		dispatch(commentsGet(id));
-	}, [id]);
+		dispatch(__commentsGet(id));
+	}, [dispatch]);
 
 	return(
 		<DetailBx>
@@ -44,8 +38,18 @@ const Detail = ({ history, match }) => {
 								<p>{lodgment.address}</p>
 							</div>
 							<div className="btnInner">
-								<div className="btnItem"><SmallButton bordercolor={"#C4C4C4"} color="#000">수정</SmallButton></div>
-								<div className="btnItem"><SmallButton background={"#C4C4C4"} color="#fff">삭제</SmallButton></div>
+								{ user?.userId === userId && (
+									<>
+										<Link
+											to={{
+												pathname: `/write/${id}/edit`,
+												state: lodgment,
+											}}>
+											<div className="btnItem"><SmallButton bordercolor={"#C4C4C4"} color="#000">수정</SmallButton></div>
+										</Link>
+										<div className="btnItem" onClick={handleDelete}><SmallButton background={"#C4C4C4"} color="#fff">삭제</SmallButton></div>
+									</>
+								)}
 							</div>
 						</div>
 						<div className="detail_img">
@@ -68,16 +72,14 @@ const Detail = ({ history, match }) => {
 								<SmallButton background={"#F4F4F4"} color={"#000"} className="star-write"><i className="ic-star-write"></i>댓글쓰기</SmallButton>
 							</div>
 							<div className="comment_write">
-								<CommentWrite name="rating" values={values.rating} onChange={handleChange}/>
+								<CommentWrite/>
 							</div>
 							<ul>
 								{ comment && (
 									comment.map((el, idx) => {
 										return(
 											<CommentList key={idx} item={el}></CommentList>
-										)
-									})
-									)
+										)}))
 								}
 							</ul>
 						</div>
