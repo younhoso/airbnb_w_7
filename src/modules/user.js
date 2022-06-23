@@ -93,7 +93,6 @@ export default handleActions(
         [LOGIN]: (state, action) =>
             produce(state, (draft) => {
                 draft.user = action.payload.user;
-                console.log(draft.user)
                 draft.is_login = true;
             }),
         [LOGOUT]: (state, action) =>

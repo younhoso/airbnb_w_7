@@ -16,7 +16,6 @@ const initialState = {
 
 // middlewares
 export const getpostDB = (category) => {
-    console.log(category)
     if (category) {
         return function (dispatch, getState, { history }) {
             axios.get(`http://3.34.42.87/api/accommodations/category/${category}`)

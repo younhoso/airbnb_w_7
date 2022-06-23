@@ -21,8 +21,6 @@ const Home = () => {
 	const postList = useSelector((state) => state.post.list.accommodations)
 	const isLogin = localStorage.getItem("token")
 	const islogin = useSelector((state) => state.user.is_login)
-	console.log(islogin)
-	console.log(postList)
 
 	const categories = [
 		{ id: "서핑", url: Surfing },
