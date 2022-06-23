@@ -56,7 +56,7 @@ const Home = () => {
 						return <PostCard post={post} key={i} />
 					})
 				}
-				{isLogin !== null && <div className="btn-wrap">
+				{isLogin && <div className="btn-wrap">
 					<Link to="/write"><AddBtn><i className="ic-plus"></i></AddBtn></Link>
 				</div>}
 			</Main>

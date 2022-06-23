@@ -5,7 +5,7 @@ import Home from "../assets/images/home.png"
 import Search from "../assets/images/search.png"
 import User from "../assets/images/user.png"
 import { useDispatch } from 'react-redux';
-import { logoutDB } from '../modules/user';
+import { loginCheck, logoutDB } from '../modules/user';
 
 function BottomNav() {
     const isLogin = localStorage.getItem("token")
@@ -15,11 +15,6 @@ function BottomNav() {
     const handleLogout = () => {
         dispatch(logoutDB())
     }
-
-    useEffect(() => {
-
-    }, [])
-
 
     return (
         <div>

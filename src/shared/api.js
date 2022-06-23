@@ -26,6 +26,7 @@ export const apis = {
 	}),
 	dupcheck: (userId) => api.post('/api/users/dup_userId', { userId }),
 	login: (userId, password) => api.post('/api/users/login', { userId, password }),
+	userConf: (token) => api.get('/api/users/me', token),
 
 	// post
 	get: (postList) => api.get('/api/accommodations', postList),
