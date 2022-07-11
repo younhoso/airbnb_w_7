@@ -1,6 +1,9 @@
 # airbnb_w_7
 
-FRONTEND MEMBERS\
+# 📌 프로젝트 기간
+기간 : 2022년 6월 17일 ~ 2022년 6월 23일(1주일)
+
+# FRONTEND MEMBERS
 [소윤호👨‍💻](https://github.com/younhoso) [김채운👩‍💻](https://github.com/gureumwoon)
 
 ### 🧳Tech Stack
