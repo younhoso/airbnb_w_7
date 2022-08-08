@@ -41,7 +41,6 @@ const FormWrite = ({props}) => {
 	const [Dday, setDday] = useState("");
 	const open = useDaumPostcodePopup("https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js");
 	const dispatch = useDispatch();
-	console.log(values)
 
     const handleChange = (name, value) => {
       setValues(function(prevValues){
