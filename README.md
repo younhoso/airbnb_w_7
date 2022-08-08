@@ -20,6 +20,6 @@
   <ul>
     <li>숙소 정보 카드를 클릭할 경우 해당 돌보미의 상세 페이지로 이동</li>
   </ul>
-  <img width="700" src="https://user-images.githubusercontent.com/30254570/183369842-8a1988e7-bad7-4b67-b866-705cf73979ed.png"/>
+  <img width="400" src="https://user-images.githubusercontent.com/30254570/183369842-8a1988e7-bad7-4b67-b866-705cf73979ed.png"/>
 </div>
 </details>
