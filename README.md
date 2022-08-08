@@ -39,7 +39,7 @@
 <summary>호스트가 숙소를 등록할수 있는 페이지</summary>
 <div markdown="1">
   <ul>
-    <li>하나의 setter함수를 커스텀하여 중복되는 useState를 통합시킴 
+    <li>하나의 setter함수를 커스텀하여 중복되는 useState를 하나로 통합시킴 (코드개선)
       <a href="https://github.com/younhoso/airbnb_w_7/blame/33717ef21403ffebc2b643e0a14dbb952a38b744/src/components/FormWrite.jsx#L45-L52" target='_blank'>[L45-L52라인 참고]</a>
     </li>
     <li>react-datepicker를 활용한 켈린더 제공</li>
