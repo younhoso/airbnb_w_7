@@ -13,23 +13,13 @@
 ![](https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black)
 ![](https://img.shields.io/badge/AXIOS-671ddf?style=for-the-badge&logo=AXIOS&logoColor=black)
 
-### 👍디렉토리 설명
-```
-src
-│   index.js
-│   Router.js
-│   App.js
-│   reset.css
-│
-└───assets (정적인 파일 모임)
-│		│ ...
-└───components (컴포넌트 폴더 모임)
-│		│ ...
-└───elem (컴포넌트 보다 작은 요소들 모임)
-│		│ ...
-└───modules (리덕스의 Actions middlewares등등 설정 모임)
-│		│ ...
-└───page (페이지별 모임)
-│		│ ...
-└───shared (기타 파일 모임)
-```
+### 🔎 주요작업
+<details>
+<summary>호스트가 등록한 숙소 정보를 리스트형식으로 매인페이지에서 노출</summary>
+<div markdown="1">
+  <ul>
+    <li>숙소 정보 카드를 클릭할 경우 해당 돌보미의 상세 페이지로 이동</li>
+  </ul>
+  <img width="700" src="https://user-images.githubusercontent.com/30254570/183369842-8a1988e7-bad7-4b67-b866-705cf73979ed.png"/>
+</div>
+</details>
