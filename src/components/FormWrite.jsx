@@ -35,7 +35,7 @@ const FormWrite = ({props}) => {
 	const {history, location,} = props;
 	const data = location.state;
 	const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  	const [endDate, setEndDate] = useState(new Date());
 	const [checkedList, setCheckedList] = useState([]);
 	const [values, setValues] = useState(data ? data : INITIAL_VALUES);
 	const [Dday, setDday] = useState("");
@@ -43,28 +43,28 @@ const FormWrite = ({props}) => {
 	const dispatch = useDispatch();
 	console.log(values)
 
-	const handleChange = (name, value) => {
-    setValues(function(prevValues){
-			return {
-      	...prevValues,
-      	[name]: value
-			}
-    });
-  };
+    const handleChange = (name, value) => {
+      setValues(function(prevValues){
+        return {
+      	 ...prevValues,
+      	 [name]: value
+	}
+      });
+    };
 
 	const handlerChecked = (checked, name) => {
     if (checked) {
-			setCheckedList([...checkedList, name])
+	setCheckedList([...checkedList, name])
     } else {
       setCheckedList(checkedList.filter((el) => el !== name));
     }
 		
-		setValues((prevValue) => {
-			return{
-				...prevValue,
-				facilities: [...checkedList, name]
-			}
-		})
+	setValues((prevValue) => {
+		return{
+			...prevValue,
+			facilities: [...checkedList, name]
+		}
+	})
   };
 
 	const handleInputChange = (e) => {
