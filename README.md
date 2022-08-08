@@ -39,10 +39,12 @@
 <summary>호스트가 숙소를 등록할수 있는 페이지</summary>
 <div markdown="1">
   <ul>
-    <li>하나의 setter함수를 커스텀하여 중복되는 useState를 통합시킴 <a href="https://github.com/younhoso/airbnb_w_7/blob/main/src/components/FormWrite.jsx#L46-L53" target="_blank">[링크참고]</a></li>
+    <li>하나의 setter함수를 커스텀하여 중복되는 useState를 통합시킴 
+      <a target="_blank" href="https://github.com/younhoso/airbnb_w_7/blob/main/src/components/FormWrite.jsx#L46-L53">[링크참고]</a>
+    </li>
     <li>react-datepicker를 활용한 켈린더 제공</li>
     <li>react-daum-postcode를 활용한 숙소 상세 주소 입력란 제공</li>
   </ul>
-  <img width="400" src="https://user-images.githubusercontent.com/30254570/183373358-8fc2d97d-d1f8-469b-a7c1-ed18c4a6b08c.png"/>
+  <img width="400" src="https://user-images.githubusercontent.com/30254570/183378083-1f66315a-cb66-441a-a87c-1a34decdcd61.png"/>
 </div>
 </details>
