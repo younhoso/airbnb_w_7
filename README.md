@@ -23,3 +23,14 @@
   <img width="400" src="https://user-images.githubusercontent.com/30254570/183369842-8a1988e7-bad7-4b67-b866-705cf73979ed.png"/>
 </div>
 </details>
+
+<details>
+<summary>호스트가 등록한 숙소 상세한 정보를 노출</summary>
+<div markdown="1">
+  <ul>
+    <li>숙소 상세한 정보 확인</li>
+    <li>댓글 작성 및 리뷰 확인</li>
+  </ul>
+  <img width="400" src="https://user-images.githubusercontent.com/30254570/183373358-8fc2d97d-d1f8-469b-a7c1-ed18c4a6b08c.png"/>
+</div>
+</details>
