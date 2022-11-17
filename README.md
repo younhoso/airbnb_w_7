@@ -3,6 +3,8 @@
 # 📌 프로젝트 기간
 기간 : 2022년 6월 17일 ~ 2022년 6월 23일(1주일)
 
+👉 [프로젝트 영상](https://hanghae99.spartacodingclub.kr/v2/exhibitions)
+
 # FRONTEND MEMBERS
 [소윤호👨‍💻](https://github.com/younhoso) [김채운👩‍💻](https://github.com/gureumwoon)
 
